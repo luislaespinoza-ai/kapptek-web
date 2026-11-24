@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kapptek | IA aplicada a la optimización de procesos mineros</title>
+<meta name="description" content="Kapptek optimiza plantas de procesamiento de minerales con IA aplicada al proceso: visión artificial, balance metalúrgico, lazos de control y control avanzado operando 24x7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: white, centered landing with very heavy headlines, pill badges and soft
+   rounded cards; the product range sits in square, dark "business line" blocks with a
+   cut corner and an action button, closing on a dark rounded contact block. */
+:root {
+  color-scheme: light;
+  --navy: #33475b;
+  --teal: #2f5d7c;
+  --teal-bright: #2f5d7c;
+  --seafoam: #a9c1d4;
+  --orange: #f4a259;
+  --cta-hover: #ee8f3c;
+  --cta-ink: #1f2a37;
+  --cta-rgb: 244, 162, 89;
+  --accent-rgb: 120, 156, 186;
+  --accent-hi-a: #c5d6e4;
+  --accent-hi-b: #dbe6ef;
+  --accent-pale: #dbe6ef;
+  --dark-rgb: 51, 71, 91;
+  --dark-deep: #2a3b4d;
+  --orange-ink: #2f5d7c;
+  --paper: #ffffff;
+  --mist: #f3f5f7;
+  --line: #dfe4ea;
+  --ink: #1f2a37;
+  --slate: #5b6776;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  --wrap: 1200px;
+  --card-radius: 28px;
+  --shadow: 0 18px 44px -22px rgba(var(--dark-rgb), 0.28), 0 2px 6px rgba(var(--dark-rgb), 0.05);
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+svg { max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+.grad { background: linear-gradient(90deg, var(--teal-bright), var(--seafoam)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Header */
+.site-header { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.header-row { display: flex; align-items: center; gap: 20px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 19px; letter-spacing: -0.01em; }
+.brand-logo { display: block; height: 26px; width: auto; }
+.nav { display: flex; gap: 30px; margin: 0 auto; }
+.nav a { text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); padding: 8px 0; }
+.nav a:hover { color: var(--ink); }
+.header-tools { display: flex; align-items: center; gap: 10px; }
+.lang { display: flex; background: var(--mist); border-radius: 999px; padding: 3px; }
+.lang button { font: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; background: transparent; color: var(--slate); border: 0; border-radius: 999px; padding: 6px 11px; cursor: pointer; }
+.lang button[aria-pressed="true"] { background: var(--paper); color: var(--ink); box-shadow: 0 1px 3px rgba(var(--dark-rgb),0.18); }
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font: inherit; font-weight: 600; text-decoration: none; border-radius: 999px; border: 1.5px solid transparent; cursor: pointer; padding: 15px 28px; font-size: 16px; }
+.pill-orange { background: var(--orange); color: var(--cta-ink); }
+.pill-orange:hover { background: var(--cta-hover); }
+.pill-dark { background: var(--navy); color: #fff; }
+.pill-dark:hover { background: #1e293b; }
+.pill-light { background: var(--paper); color: var(--ink); border-color: var(--line); box-shadow: 0 1px 3px rgba(var(--dark-rgb),0.08); }
+.pill-light:hover { border-color: #94a3b8; }
+.pill-small { padding: 10px 18px; font-size: 12.5px; }
+.menu-toggle { display: none; font: inherit; font-size: 13px; font-weight: 600; background: var(--mist); color: var(--ink); border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; padding: 84px 0 56px; text-align: center; color: #fff; background: var(--navy); }
+.hero::before { content: ""; position: absolute; inset: -4%; background: url("img/hero.jpg") 82% center / cover no-repeat; transform-origin: 70% 55%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse 62% 46% at 50% 34%, rgba(14,18,24,0.66), rgba(14,18,24,0.2) 78%), linear-gradient(180deg, rgba(14,18,24,0.3) 0%, rgba(14,18,24,0.05) 30%, rgba(14,18,24,0.72) 100%); }
+.hero > .wrap { position: relative; z-index: 2; }
+.hero-alt { position: absolute; inset: -4%; background: url("img/hero-2.jpg") 12% center / cover no-repeat; opacity: 0; transform-origin: 25% 45%; }
+.hero .grad { background-image: linear-gradient(90deg, var(--accent-hi-a), var(--accent-hi-b), var(--accent-pale), var(--accent-hi-a)); -webkit-background-clip: text; background-clip: text; }
+.hero .pill-light { background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.55); box-shadow: none; }
+.hero .pill-light:hover { background: rgba(255,255,255,0.2); border-color: #fff; }
+.announce { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: center; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px 6px 6px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); text-decoration: none; box-shadow: 0 1px 4px rgba(var(--dark-rgb),0.08); }
+.announce b { background: var(--orange); color: var(--cta-ink); border-radius: 999px; padding: 4px 10px; font-size: 10.5px; }
+.announce i { font-style: normal; color: var(--ink); }
+.hero h1 { font-size: clamp(42px, 7.4vw, 88px); font-weight: 900; letter-spacing: -0.045em; line-height: 0.98; margin: 34px auto 0; max-width: 12.5em; }
+.hero-lead { font-size: clamp(18px, 2vw, 21px); color: rgba(255,255,255,0.88); max-width: 33em; margin: 30px auto 0; }
+.hero-lead b { color: #fff; font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-top: 36px; }
+.console { text-align: left; max-width: 860px; margin: 64px auto 0; background: rgba(var(--dark-rgb),0.86); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.16); color: #fff; border-radius: 24px; padding: 0 0 22px; box-shadow: 0 40px 80px -40px rgba(0,0,0,0.7); overflow: hidden; }
+.console-bar { display: flex; align-items: center; gap: 10px; padding: 14px 22px; border-bottom: 1px solid rgba(255,255,255,0.12); font-family: var(--font-mono); font-size: 12.5px; color: rgba(255,255,255,0.75); }
+.console-bar .live { width: 9px; height: 9px; border-radius: 50%; background: var(--seafoam); box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.25); }
+.console-bar span:last-child { margin-left: auto; }
+.console-rows { display: grid; gap: 0; padding: 8px 10px 0; }
+.console-row { display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: baseline; padding: 13px 12px; border-radius: 8px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 15.5px; }
+.console-row em { font-style: normal; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--seafoam); }
+.console-progress { margin: 18px 22px 0; }
+.console-progress div:first-child { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+.bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.bar span { display: block; height: 100%; width: 100%; border-radius: 999px; background-image: linear-gradient(90deg, var(--teal-bright), var(--seafoam), var(--accent-pale), var(--seafoam), var(--teal-bright)); }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+.stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); backdrop-filter: blur(6px); border-radius: 22px; padding: 26px 22px; text-align: center; min-width: 0; }
+.stat-num { font-size: clamp(24px, 2.6vw, 32px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 8px; }
+.stat-label { font-size: 15px; color: rgba(255,255,255,0.86); }
+
+/* Section headings */
+section { padding: 96px 0; }
+.head-center { text-align: center; max-width: 780px; margin: 0 auto 52px; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 999px; padding: 6px 14px; background: var(--mist); color: var(--slate); margin-bottom: 20px; }
+.tag-solid { background: var(--teal); color: #fff; }
+.tag-accent { background: var(--orange); color: var(--cta-ink); }
+.head-center h2, .head-left h2 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; }
+.head-center p { margin-top: 18px; font-size: 19px; color: var(--slate); }
+
+/* Comparison */
+.compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 980px; margin: 0 auto; }
+.compare-card { border-radius: var(--card-radius); padding: 34px; min-width: 0; }
+.compare-card.today { background: var(--mist); }
+.compare-card.kapptek { background: var(--paper); border: 1px solid var(--line); box-shadow: var(--shadow); }
+.compare-card h3 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--slate); margin-bottom: 14px; }
+.compare-card.kapptek h3 { color: var(--teal); }
+.compare-card ul { list-style: none; margin: 0; padding: 0; }
+.compare-card li { padding: 15px 0; border-top: 1px solid var(--line); font-size: 18px; font-weight: 600; min-height: 86px; }
+.compare-card.today li { color: var(--slate); font-weight: 500; }
+.compare-card li small { display: block; font-size: 14.5px; font-weight: 400; color: var(--slate); margin-top: 2px; }
+
+/* Business lines (square, dark, cut corner) */
+.lines-wrap { background: var(--mist); }
+.head-left { margin-bottom: 36px; display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
+.head-left p { color: var(--slate); font-size: 18px; max-width: 30em; }
+.lines { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.line { display: grid; grid-template-columns: 0.92fr 1.08fr; background: var(--paper); min-width: 0; scroll-margin-top: 96px; }
+.line-dark { background: var(--navy); color: #fff; padding: 30px 26px 28px; clip-path: polygon(34px 0, 100% 0, 100% 100%, 0 100%, 0 34px); display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.line.core .line-dark { background: var(--dark-deep); }
+.line-step { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--seafoam); }
+.line-dark h3 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+.line-dark p { font-size: 15.5px; color: rgba(255,255,255,0.84); }
+.sq-btn { align-self: flex-start; margin-top: auto; display: inline-block; background: var(--orange); color: var(--cta-ink); text-decoration: none; text-transform: uppercase; letter-spacing: 0.12em; font-size: 12.5px; font-weight: 700; padding: 13px 18px; border: 0; cursor: pointer; font-family: inherit; }
+.sq-btn:hover { background: var(--cta-hover); }
+.line-media { display: flex; flex-direction: column; min-width: 0; }
+.line-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.line-info { flex: 1; padding: 22px 24px 24px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.line-icon { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--slate); }
+.line-icon svg { width: 22px; height: 22px; flex: none; color: var(--teal); }
+.line-pain { font-size: 19px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.2; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: auto 0 0; padding: 0; }
+.chips li { font-size: 12.5px; font-weight: 500; border-radius: 999px; padding: 4px 11px; background: var(--mist); color: var(--ink); }
+
+/* Principles (soft rounded cards) */
+.cards { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--card-radius); padding: 36px; box-shadow: var(--shadow); display: grid; grid-template-columns: 52px 1fr; gap: 18px; min-width: 0; }
+.card-icon { width: 52px; height: 52px; border-radius: 16px; background: rgba(var(--accent-rgb),0.1); color: var(--teal); display: flex; align-items: center; justify-content: center; }
+.card-icon svg { width: 26px; height: 26px; }
+.card:nth-child(even) .card-icon { background: rgba(var(--cta-rgb),0.1); color: var(--orange-ink); }
+.card h3 { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 8px; }
+.card p { color: var(--slate); font-size: 16.5px; }
+.card .chips { margin-top: 14px; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px; }
+.step { min-width: 0; border-top: 3px solid var(--navy); padding-top: 18px; }
+.step-num { font-size: 44px; font-weight: 900; letter-spacing: -0.04em; line-height: 1; }
+.step h3 { font-size: 21px; font-weight: 800; margin: 10px 0 6px; }
+.step p { color: var(--slate); font-size: 16.5px; }
+
+/* Photo band */
+.band { padding: 0; min-height: 380px; display: flex; align-items: flex-end; color: #fff; background: linear-gradient(180deg, rgba(var(--dark-rgb),0.1) 0%, rgba(var(--dark-rgb),0.82) 100%), url("img/band.jpg") center / cover no-repeat var(--navy); }
+.band p { font-size: clamp(26px, 3.6vw, 44px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; max-width: 16em; padding: 150px 0 44px; text-wrap: balance; }
+.about-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; margin-bottom: 24px; clip-path: polygon(34px 0, 100% 0, 100% 100%, 0 100%, 0 34px); }
+/* About + offices (dark bar list) */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+.about > * { min-width: 0; }
+.about h2 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; }
+.about-text { font-size: 19px; color: var(--slate); margin-top: 20px; }
+.checks { list-style: none; margin: 26px 0 0; padding: 0; display: grid; gap: 14px; }
+.checks li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; }
+.checks svg { width: 24px; height: 24px; color: var(--teal); margin-top: 2px; }
+.checks b { display: block; }
+.checks span { color: var(--slate); font-size: 15.5px; }
+.place-bar { background: var(--navy); color: #fff; padding: 20px 24px; clip-path: polygon(26px 0, 100% 0, 100% 100%, 0 100%, 0 26px); font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+.place { display: grid; grid-template-columns: 150px 1fr; gap: 16px; padding: 18px 24px; background: var(--mist); border-bottom: 3px solid var(--paper); }
+.place b { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-ink); }
+.place b small { display: block; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--ink); margin-top: 2px; }
+.place span { font-size: 15.5px; color: var(--slate); }
+
+/* Contact (dark rounded block) */
+.contact-section { padding: 24px 0 96px; }
+.contact { background: var(--navy); color: #fff; border-radius: 48px; padding: 72px 64px; display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 56px; align-items: start; }
+.contact > * { min-width: 0; }
+.contact h2 { font-size: clamp(32px, 4.6vw, 54px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.02; }
+.contact h2 .grad { background: linear-gradient(90deg, var(--accent-hi-a), var(--accent-hi-b)); -webkit-background-clip: text; background-clip: text; }
+.contact-lead { margin-top: 18px; font-size: 19px; color: rgba(255,255,255,0.8); }
+.contact-lines { display: grid; gap: 16px; margin-top: 32px; }
+.contact-lines small { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--seafoam); }
+.contact-lines a { font-size: 21px; font-weight: 700; text-decoration-color: rgba(255,255,255,0.35); text-underline-offset: 4px; }
+.form { background: var(--paper); color: var(--ink); border-radius: 28px; padding: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field.full { grid-column: 1 / -1; }
+.field label { font-size: 13.5px; font-weight: 700; }
+.field input, .field select, .field textarea { font: inherit; font-size: 16px; color: var(--ink); background: var(--mist); border: 1px solid #cbd5e1; border-radius: 12px; padding: 12px 14px; width: 100%; }
+.field textarea { min-height: 110px; resize: vertical; }
+.form-foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.form-status { font-size: 14px; color: var(--slate); flex: 1 1 220px; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); padding: 44px 0 36px; font-size: 14.5px; color: var(--slate); }
+.site-footer .brand { color: var(--ink); }
+.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+.footer-grid h3 { font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+.footer-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.footer-grid a { text-decoration: none; }
+.footer-grid a:hover { color: var(--ink); text-decoration: underline; }
+.footer-note { margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--line); }
+
+/* ---------- Pulso auto-tuning section ---------- */
+.tune { background: var(--navy); color: #fff; }
+.tune .tag { background: rgba(255,255,255,0.14); color: #fff; }
+.tune .head-center p { color: rgba(255,255,255,0.84); }
+.tune h2 .grad { color: var(--orange); }
+.tune-caps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tune-caps .tune-step h3 { font-size: 22px; }
+.tune-caps .chips { margin-top: auto; padding-top: 10px; }
+.tune-h3 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; text-align: center; margin: 72px auto 0; }
+.tune-h3 .grad { color: #c5d6e4; }
+.tune-h3-lead { text-align: center; font-size: 18px; color: rgba(255,255,255,0.84); max-width: 44em; margin: 14px auto 36px; }
+.tune-panel p + p { margin-top: 8px; }
+.tune-benefits { list-style: none; margin: 0 0 44px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.22); }
+.tune-benefits li { padding: 22px 22px 24px; min-width: 0; }
+.tune-benefits li + li { border-left: 1px solid rgba(255,255,255,0.22); }
+.tune-benefits b { display: block; font-size: 19px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 6px; }
+.tune-benefits span { font-size: 15px; color: rgba(255,255,255,0.82); }
+.tune-sub { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--seafoam); margin-bottom: 14px; }
+.tune-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.tune-step { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; padding: 24px; min-width: 0; display: flex; flex-direction: column; gap: 8px; transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+.tune-step:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.4); }
+.tune-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--seafoam); }
+.tune-step h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; }
+.tune-step p { font-size: 15.5px; color: rgba(255,255,255,0.82); }
+.tune .chips { margin-top: 6px; }
+.tune .chips li { background: rgba(255,255,255,0.13); color: #fff; }
+.tune .chips li:hover { background: rgba(255,255,255,0.24); color: #fff; }
+.tune-meta { display: grid; grid-template-columns: 1fr 1.4fr; gap: 18px; margin-top: 18px; }
+.tune-panel { border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; padding: 22px 24px; min-width: 0; }
+.tune-panel h3 { font-size: 11.5px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--seafoam); margin-bottom: 10px; }
+.tune-panel p { font-size: 15.5px; color: rgba(255,255,255,0.86); }
+.tune-panel p + p { margin-top: 4px; }
+.tune-panel b { color: #fff; }
+.tune-result { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-top: 36px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.18); }
+.tune-result p { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; max-width: 34em; }
+
+/* ---------- OPC Enlace (free download) ---------- */
+.enlace-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 56px; align-items: start; }
+.enlace-grid > * { min-width: 0; }
+.enlace h2 { font-size: clamp(30px, 4.4vw, 50px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; }
+.enlace-lead { font-size: 19px; color: var(--slate); margin-top: 18px; max-width: 34em; }
+.enlace-list { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 26px 28px; }
+.enlace-list li { border-top: 3px solid var(--navy); padding-top: 14px; min-width: 0; }
+.enlace-list small { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--teal); }
+.enlace-list b { display: block; font-size: 19px; font-weight: 800; letter-spacing: -0.015em; margin: 4px 0 6px; }
+.enlace-list span { font-size: 15.5px; color: var(--slate); }
+.dl-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--card-radius); padding: 30px; box-shadow: var(--shadow); }
+.dl-card h3 { font-size: 23px; font-weight: 800; letter-spacing: -0.02em; }
+.dl-card > p { font-size: 15.5px; color: var(--slate); margin: 6px 0 20px; }
+.dl-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.dl-form .form-status { flex: 1 1 100%; }
+.dl-form .form-status.is-error { color: #b42318; font-weight: 600; }
+.dl-note { grid-column: 1 / -1; font-size: 13px; color: var(--slate); }
+.dl-ready { display: none; margin-top: 18px; padding: 18px; border-radius: 16px; background: var(--mist); border: 1px solid var(--line); }
+.dl-ready.is-on { display: block; }
+.dl-ready p { font-size: 15px; margin-bottom: 12px; }
+
+/* ---------- Effects ---------- */
+.site-header { transition: box-shadow 0.3s ease, background-color 0.3s ease; }
+.site-header.is-scrolled { box-shadow: 0 10px 30px -18px rgba(var(--dark-rgb),0.45); }
+.nav a { position: relative; }
+.nav a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 2px; height: 2px; background: linear-gradient(90deg, var(--teal-bright), var(--seafoam)); transform: scaleX(0); transform-origin: left; transition: transform 0.25s ease; }
+.nav a:hover::after { transform: scaleX(1); }
+.pill, .sq-btn { transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease; }
+.pill:hover { transform: translateY(-2px); }
+.pill-orange { box-shadow: 0 10px 24px -10px rgba(var(--cta-rgb),0.7); }
+.pill-orange:hover { box-shadow: 0 16px 30px -10px rgba(var(--cta-rgb),0.8); }
+.sq-btn::after { content: "→"; display: inline-block; margin-left: 8px; transition: transform 0.2s ease; }
+.sq-btn:hover::after { transform: translateX(5px); }
+.line { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.line:hover { transform: translateY(-6px); box-shadow: 0 30px 50px -28px rgba(var(--dark-rgb),0.5); }
+.line-media { overflow: hidden; }
+.line-photo { transition: transform 0.7s ease; }
+.line-shot { object-position: left top; }
+.line:hover .line-photo { transform: scale(1.07); }
+.line-info { position: relative; background: var(--paper); }
+.line-dark { position: relative; overflow: hidden; }
+.line-dark::before { content: ""; position: absolute; left: 0; top: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--teal-bright), var(--seafoam)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.line:hover .line-dark::before { transform: scaleX(1); }
+.card, .compare-card.kapptek, .stat { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease; }
+.card:hover, .compare-card.kapptek:hover { transform: translateY(-5px); box-shadow: 0 30px 56px -24px rgba(var(--dark-rgb),0.35), 0 2px 6px rgba(var(--dark-rgb),0.05); border-color: rgba(var(--accent-rgb),0.45); }
+.card-icon { transition: transform 0.3s ease; }
+.card:hover .card-icon { transform: scale(1.1) rotate(-4deg); }
+.stat:hover { transform: translateY(-4px); background: rgba(255,255,255,0.16); border-color: rgba(var(--accent-rgb),0.6); }
+.step { transition: border-color 0.3s ease; }
+.step:hover { border-top-color: var(--seafoam); }
+.chips li { transition: background-color 0.2s ease, color 0.2s ease; }
+.chips li.chip-key, .chips li.chip-key:hover { background: var(--orange); color: var(--cta-ink); font-weight: 700; font-size: 14px; padding: 6px 14px; }
+.line-dark p b { color: #fff; font-weight: 800; }
+.chips li:hover { background: rgba(var(--accent-rgb),0.14); color: var(--teal); }
+.about-photo { transition: filter 0.4s ease; }
+.contact { position: relative; overflow: hidden; }
+.contact::before { content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -220px; border-radius: 50%; background: radial-gradient(circle, rgba(var(--accent-rgb),0.32), rgba(var(--accent-rgb),0) 68%); pointer-events: none; }
+.contact > * { position: relative; }
+.field input, .field select, .field textarea { transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--teal-bright); box-shadow: 0 0 0 4px rgba(var(--accent-rgb),0.18); }
+
+@media (hover: hover) and (min-width: 1001px) { .band { background-attachment: scroll, fixed; } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero::before { animation: hero-drift 26s ease-in-out infinite alternate; }
+  .hero-alt { animation: hero-swap 16s ease-in-out infinite, hero-drift-alt 16s ease-in-out infinite alternate; }
+  .hero .grad { background-size: 220% 100%; animation: grad-slide 7s ease-in-out infinite alternate; }
+  .console-bar .live { animation: live-pulse 1.8s ease-out infinite; }
+  .console-row { animation: row-active 7.5s ease-in-out infinite; }
+  .console-row:nth-child(2) { animation-delay: 2.5s; }
+  .console-row:nth-child(3) { animation-delay: 5s; }
+  .bar span { background-size: 200% 100%; animation: bar-flow 2.8s linear infinite; }
+  .announce b { animation: live-pulse-orange 2.2s ease-out infinite; }
+  .contact::before { animation: glow-float 12s ease-in-out infinite alternate; }
+  .js-reveal .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .js-reveal .reveal.is-in { opacity: 1; transform: none; }
+}
+@keyframes hero-drift { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.08) translate3d(-1%, 1%, 0); } }
+@keyframes hero-swap { 0%, 43% { opacity: 0; } 50%, 93% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes hero-drift-alt { from { transform: scale(1) translate3d(0, 0, 0); } to { transform: scale(1.08) translate3d(1%, -1%, 0); } }
+@keyframes grad-slide { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb),0.6); } 100% { box-shadow: 0 0 0 10px rgba(var(--accent-rgb),0); } }
+@keyframes live-pulse-orange { 0% { box-shadow: 0 0 0 0 rgba(var(--cta-rgb),0.55); } 100% { box-shadow: 0 0 0 9px rgba(var(--cta-rgb),0); } }
+@keyframes row-active { 0%, 30% { background: rgba(var(--accent-rgb),0.14); box-shadow: inset 3px 0 0 var(--seafoam); } 36%, 100% { background: transparent; box-shadow: inset 3px 0 0 transparent; } }
+@keyframes bar-flow { from { background-position: 200% 0; } to { background-position: 0 0; } }
+@keyframes glow-float { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-90px, 70px, 0); } }
+
+/* ---------- Sober treatment: neutral palette, no colour gradients ---------- */
+.grad, .hero .grad, .contact h2 .grad { background: none; -webkit-background-clip: border-box; background-clip: border-box; animation: none; color: #8792a2; }
+.hero .grad { color: var(--orange); }
+.contact h2 .grad { color: #c5d6e4; }
+.step-num.grad { color: var(--ink); }
+.sq-btn { background: #ffffff; color: var(--navy); }
+.sq-btn:hover { background: #e7e9ec; }
+.announce b { animation: none; background: var(--teal); color: #ffffff; }
+.console-bar .live { background: #5fd08f; }
+.card:nth-child(even) .card-icon { background: rgba(var(--accent-rgb), 0.16); color: var(--teal); }
+.card-icon { background: rgba(var(--accent-rgb), 0.16); }
+.band { background-image: linear-gradient(180deg, rgba(var(--dark-rgb),0) 0%, rgba(var(--dark-rgb),0.1) 40%, rgba(var(--dark-rgb),0.78) 100%), url("img/band.jpg"); }
+
+@media (max-width: 1000px) {
+  .nav { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--paper); flex-direction: column; gap: 0; padding: 6px 24px 14px; border-bottom: 1px solid var(--line); margin: 0; }
+  .nav.is-open { display: flex; }
+  .nav a { padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .header-tools { margin-left: auto; }
+  .menu-toggle { display: inline-block; }
+  .header-cta { display: none; }
+  .lines, .cards, .about, .contact, .enlace-grid { grid-template-columns: 1fr; }
+  .contact { padding: 48px 32px; border-radius: 36px; }
+  .stats { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; gap: 28px; }
+  .tune-steps { grid-template-columns: 1fr 1fr; }
+  .tune-benefits { grid-template-columns: 1fr 1fr; }
+  .tune-benefits li:nth-child(3) { border-left: 0; }
+  .tune-benefits li:nth-child(n+3) { border-top: 1px solid rgba(255,255,255,0.22); }
+  .tune-meta { grid-template-columns: 1fr; }
+  .tune-caps { grid-template-columns: 1fr; }
+  section { padding: 68px 0; }
+}
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .compare { grid-template-columns: 1fr; }
+  .enlace-list, .dl-form { grid-template-columns: 1fr; }
+  .tune-steps { grid-template-columns: 1fr; }
+  .tune-benefits { grid-template-columns: 1fr; }
+  .tune-benefits li + li { border-left: 0; border-top: 1px solid rgba(255,255,255,0.22); }
+  .compare-card li { min-height: 0; }
+  .line { grid-template-columns: 1fr; }
+  .card { grid-template-columns: 1fr; padding: 26px; }
+  .console-row { grid-template-columns: 1fr; gap: 2px; }
+  .place { grid-template-columns: 1fr; gap: 4px; }
+  .form { grid-template-columns: 1fr; padding: 20px; }
+  .contact { padding: 36px 20px; border-radius: 28px; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .announce i { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#inicio" aria-label="Kapptek"><img class="brand-logo" src="img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26"></a>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a href="#soluciones" data-i18n="nav.solutions">Soluciones</a>
+      <a href="#enfoque" data-i18n="nav.approach">Enfoque</a>
+      <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
+      <a href="#contacto" data-i18n="nav.contact">Contacto</a>
+    </nav>
+    <div class="header-tools">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" id="lang-es" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill pill-orange pill-small header-cta" href="#contacto" data-i18n="cta.demo.short">Solicitar demostración</a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav" data-i18n="nav.menu">Menú</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="hero" id="inicio">
+  <div class="hero-alt" aria-hidden="true"></div>
+  <div class="wrap">
+    <a class="announce" href="#otr-agent"><b data-i18n="an.new">Nuevo</b><span data-i18n="an.text">OTR Agent: agente virtual operativo 24x7</span><i data-i18n="an.link">Ver soluciones →</i></a>
+    <h1 data-i18n="hero.title">Su planta en el <span class="grad">mejor punto de operación.</span></h1>
+    <p class="hero-lead" data-i18n="hero.lead">Mida, balancee, diagnostique y controle el proceso en tiempo real. <b>Kapptek</b> optimiza plantas de procesamiento de minerales con IA aplicada al proceso, turno tras turno.</p>
+    <div class="hero-actions">
+      <a class="pill pill-orange" href="#contacto" data-i18n="cta.demo">Solicitar una demostración</a>
+      <a class="pill pill-light" href="#soluciones" data-i18n="cta.solutions">Ver soluciones</a>
+    </div>
+
+    <div class="console" aria-label="Ejemplo ilustrativo">
+      <div class="console-bar"><span class="live"></span><span data-i18n="co.title">OTR Agent · modo Automático</span><span data-i18n="co.note">Ejemplo ilustrativo</span></div>
+      <div class="console-rows">
+        <div class="console-row"><em data-i18n="co.k1">Medir</em><span data-i18n="co.t1">OTR Agent detecta una desviación en el controlador.</span></div>
+        <div class="console-row"><em data-i18n="co.k2">Decidir</em><span data-i18n="co.t2">Una regla determinista, con el contexto del especialista, ajusta la consigna.</span></div>
+        <div class="console-row"><em data-i18n="co.k3">Explicar</em><span data-i18n="co.t3">El agente virtual explica y la razón queda registrada y visible para el operador.</span></div>
+      </div>
+      <div class="console-progress">
+        <div><span data-i18n="co.p">Punto de trabajo sostenido</span><span>24x7</span></div>
+        <div class="bar"><span></span></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num">24x7</div><div class="stat-label" data-i18n="stat.a">Nuestros sistemas operan en la planta de forma continua, todos los turnos.</div></div>
+      <div class="stat"><div class="stat-num" data-i18n="stat.bn">Internacional</div><div class="stat-label" data-i18n="stat.b">Operamos en distintos países, con soporte integrado y atención remota.</div></div>
+      <div class="stat"><div class="stat-num" data-i18n="stat.cn">Ecosistema completo</div><div class="stat-label" data-i18n="stat.c">Visión artificial, balance metalúrgico, lazos de control y control avanzado.</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="desafio">
+  <div class="wrap">
+    <div class="head-center">
+      <span class="tag" data-i18n="ch.eyebrow">El desafío</span>
+      <h2 data-i18n="ch.title">Lo que la planta pierde entre un turno y otro</h2>
+      <p data-i18n="ch.lead">Los KPI operativos y económicos de la planta dependen de decisiones que se toman en cada turno.</p>
+    </div>
+    <div class="compare">
+      <div class="compare-card today">
+        <h3 data-i18n="ch.col1">Lo que ocurre hoy</h3>
+        <ul>
+          <li data-i18n="ch.p1">Cada turno opera a su manera y a su ritmo</li>
+          <li data-i18n="ch.p2">Expertos que rotan</li>
+          <li data-i18n="ch.p3">Datos dispersos</li>
+          <li data-i18n="ch.p4">Estudios que envejecen</li>
+        </ul>
+      </div>
+      <div class="compare-card kapptek">
+        <h3 data-i18n="ch.col2">Con Kapptek</h3>
+        <ul>
+          <li><span data-i18n="ch.a1">Un agente virtual operando 24x7</span><small data-i18n="ch.d1">Sostiene la planta en el punto de trabajo definido.</small></li>
+          <li><span data-i18n="ch.a2">Cada decisión queda trazada</span><small data-i18n="ch.d2">El conocimiento operativo queda en el sistema.</small></li>
+          <li><span data-i18n="ch.a3">Balance metalúrgico reconciliado</span><small data-i18n="ch.d3">Una sola versión de los datos para decidir.</small></li>
+          <li><span data-i18n="ch.a4">Diagnóstico operativo siempre activo</span><small data-i18n="ch.d4">Un asesor de tiempo completo para la operación.</small></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="soluciones" class="lines-wrap">
+  <div class="wrap">
+    <div class="head-left">
+      <h2 data-i18n="sol.title">Nuestras soluciones</h2>
+      <p data-i18n="sol.lead">Un ecosistema que sigue la señal desde la cámara en terreno hasta el sistema de control.</p>
+    </div>
+    <div class="lines">
+
+      <article class="line" id="serie-id">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p1.step">01 · Medir</span>
+          <h3>Serie ID</h3>
+          <p data-i18n="p1.desc">Identifica desviaciones operativas con visión artificial, midiendo en línea.</p>
+          <a class="sq-btn" href="#contacto" data-topic="Serie ID" data-i18n="cta.more">Solicitar demo</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/serie-id.jpg" alt="Cámara de visión artificial detectando una maraña de alambre en la descarga de mineral de un camión" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><span data-i18n="p1.kind">Visión artificial</span></div>
+          <p class="line-pain" data-i18n="p1.pain">Desviaciones que nadie ve a tiempo.</p>
+          <ul class="chips">
+            <li data-i18n="p1.c1">FrothID · espuma de flotación</li>
+            <li data-i18n="p1.c2">BallID · bolas de molienda</li>
+            <li data-i18n="p1.c3">RockID · roca y granulometría</li>
+            <li data-i18n="p1.c4">FeedID · detección de inchancables</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="line" id="amina-vm">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p2.step">02 · Balancear</span>
+          <h3>Amina VM</h3>
+          <p data-i18n="p2.desc">El metalurgista virtual: balances metalúrgicos en línea sobre datos reconciliados.</p>
+          <a class="sq-btn" href="#contacto" data-topic="Amina VM" data-i18n="cta.more">Solicitar demo</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/amina-vm.jpg" alt="Vista elevada de una planta concentradora con los flujos de material trazados como líneas" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8h14M5 8l-2 6a3 3 0 0 0 6 0zM19 8l-2 6a3 3 0 0 0 6 0zM8 20h8"/></svg><span data-i18n="p2.kind">Balance metalúrgico</span></div>
+          <p class="line-pain" data-i18n="p2.pain">Datos dispersos y balances que no cierran.</p>
+          <ul class="chips">
+            <li data-i18n="p2.c1">Balance de masa</li>
+            <li data-i18n="p2.c2">Reconciliación</li>
+            <li data-i18n="p2.c3">Inventarios</li>
+            <li data-i18n="p2.c4">Contabilidad metalúrgica</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="line" id="pulso">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p3.step">03 · Diagnosticar</span>
+          <h3>Pulso</h3>
+          <p data-i18n="p3.desc"><b>Autosintonía de lazos de control.</b> Evalúa y diagnostica cada lazo, y recupera su desempeño sin pruebas en planta.</p>
+          <a class="sq-btn" href="#sintonia" data-i18n="cta.pulso">Ver Pulso</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/pulso.jpg" alt="Transmisor y válvula de control sobre una tubería, con una señal que oscila y se estabiliza" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 4 12 3-9 2 3h5"/></svg><span data-i18n="p3.kind">Lazos de control</span></div>
+          <p class="line-pain" data-i18n="p3.pain">Lazos en manual, oscilantes o mal sintonizados.</p>
+          <ul class="chips">
+            <li class="chip-key" data-i18n="p3.c1">Autosintonía</li>
+            <li data-i18n="p3.c2">Salud y diagnóstico de lazos</li>
+            <li data-i18n="p3.c3">Prioridad de intervención</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="line core" id="otr-agent">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p4.step">04 · Controlar</span>
+          <h3>OTR Agent</h3>
+          <p data-i18n="p4.desc">Un agente virtual operativo que trabaja 24x7 y explica cada una de sus decisiones.</p>
+          <a class="sq-btn" href="#contacto" data-topic="OTR Agent" data-i18n="cta.more">Solicitar demo</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/otr-agent.jpg" alt="Molino en operación al anochecer, rodeado por un anillo de luz con líneas hacia la correa de alimentación y los hidrociclones" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8" stroke-width="3.2"/><circle cx="12" cy="12" r="2"/></svg><span data-i18n="p4.kind">Control avanzado</span></div>
+          <p class="line-pain" data-i18n="p4.pain">Cada turno opera a su manera y a su ritmo.</p>
+          <ul class="chips">
+            <li data-i18n="p4.c1">Control PID y MPC</li>
+            <li data-i18n="p4.c2">Lógica difusa</li>
+            <li data-i18n="p4.c3">Inferencia</li>
+            <li data-i18n="p4.c4">KPI económicos</li>
+            <li data-i18n="p4.c5">Historiador y analítica</li>
+            <li data-i18n="p4.c6">Habilidades</li>
+            <li data-i18n="p4.c7">Contexto</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="line" id="opc-nexus">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p5.step">05 · Conectar</span>
+          <h3>OPC Nexus</h3>
+          <p data-i18n="p5.desc">Une clientes OPC DA y UA en un solo puente hacia el sistema de control.</p>
+          <a class="sq-btn" href="#contacto" data-topic="OPC Nexus" data-i18n="cta.more">Solicitar demo</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/opc-nexus.jpg" alt="Sala de gabinetes de control con varias líneas de datos que se unen en un servidor y siguen como una sola hacia el sistema de control" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="6" height="6"/><rect x="16" y="9" width="6" height="6"/><path d="M8 12h8"/></svg><span data-i18n="p5.kind">Comunicaciones</span></div>
+          <p class="line-pain" data-i18n="p5.pain">Varios sistemas, un solo puente al control de planta.</p>
+          <ul class="chips">
+            <li>OPC DA</li>
+            <li>OPC UA</li>
+            <li data-i18n="p5.c3">Sistema de control (DCS)</li>
+          </ul>
+        </div></div>
+      </article>
+
+      <article class="line" id="servicios">
+        <div class="line-dark">
+          <span class="line-step" data-i18n="p6.step">Equipo experto</span>
+          <h3 data-i18n="p6.name">Servicios</h3>
+          <p data-i18n="p6.desc">Especialistas con conocimiento operativo que acompañan al software en la planta.</p>
+          <a class="sq-btn" href="#contacto" data-topic="Servicios" data-i18n="cta.talk">Conversemos</a>
+        </div>
+        <div class="line-media"><img class="line-photo" src="img/servicios.jpg" alt="Especialista con casco y chaleco revisando su teléfono en una sala de equipos de la planta" loading="lazy" width="960" height="536"><div class="line-info">
+          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5a3.5 3.5 0 0 1 0 6.5M18 14.5a6 6 0 0 1 3.5 5.5"/></svg><span data-i18n="p6.kind">Servicios especializados</span></div>
+          <p class="line-pain" data-i18n="p6.pain">Soporte integrado, con atención remota internacional.</p>
+          <ul class="chips">
+            <li data-i18n="p6.c1">Auditorías de optimización y control</li>
+            <li data-i18n="p6.c2">Entrenamiento</li>
+            <li data-i18n="p6.c3">Soporte remoto</li>
+          </ul>
+        </div></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section id="sintonia" class="tune">
+  <div class="wrap">
+    <div class="head-center">
+      <span class="tag" data-i18n="tu.eyebrow">Pulso · Lazos de control</span>
+      <h2 data-i18n="tu.title">Evalúa, diagnostica y <span class="grad">sintoniza automáticamente</span> sus lazos de control.</h2>
+      <p data-i18n="tu.lead">Pulso supervisa de forma continua el desempeño de los lazos de la planta, diagnostica la causa de los problemas y los sintoniza automáticamente.</p>
+    </div>
+    <div class="tune-caps">
+      <div class="tune-step"><span class="tune-num" data-i18n="pc.k1">Evalúa</span><h3 data-i18n="pc.h1">Un puntaje de salud por lazo</h3><p data-i18n="pc.t1">Lee las cuatro señales de cada lazo (variable de proceso, setpoint, salida y modo) y combina, con pesos configurables, lo que importa para su desempeño.</p>
+        <ul class="chips"><li data-i18n="pc.c11">Tiempo en automático</li><li data-i18n="pc.c12">Variabilidad</li><li data-i18n="pc.c13">Saturación</li><li data-i18n="pc.c14">Mínima varianza</li></ul></div>
+      <div class="tune-step"><span class="tune-num" data-i18n="pc.k2">Diagnostica</span><h3 data-i18n="pc.h2">La causa, no solo el síntoma</h3><p data-i18n="pc.t2">Etiqueta la causa del mal desempeño y agrupa las oscilaciones comunes a varios lazos para apuntar al lazo que las origina.</p>
+        <ul class="chips"><li data-i18n="pc.c21">Oscilación</li><li data-i18n="pc.c22">Agarre de válvula</li><li data-i18n="pc.c23">Sintonía lenta o agresiva</li><li data-i18n="pc.c24">Sensor ruidoso o congelado</li><li data-i18n="pc.c25">Tiempo muerto dominante</li><li data-i18n="pc.c26">Cambios frecuentes de modo</li></ul></div>
+      <div class="tune-step"><span class="tune-num" data-i18n="pc.k3">Prioriza</span><h3 data-i18n="pc.h3">Dónde intervenir primero</h3><p data-i18n="pc.t3">Traduce el desempeño a impacto económico según la producción, el precio y los costos de cada lazo, y avisa cuando un lazo se degrada.</p>
+        <ul class="chips"><li data-i18n="pc.c31">Mapa de salud por área</li><li data-i18n="pc.c32">Ranking de los peores lazos</li><li data-i18n="pc.c33">Evolución diaria</li><li data-i18n="pc.c34">Reportes y avisos</li></ul></div>
+    </div>
+    <h3 class="tune-h3" data-i18n="tu.sub">Sintonía automática, <span class="grad">sin pruebas en planta.</span></h3>
+    <p class="tune-h3-lead" data-i18n="tu.sublead">Sobre esa base, Pulso aprende del historial de la operación, calcula la mejor sintonía para cada lazo PID y lo sintoniza automáticamente con los parámetros calculados.</p>
+    <ul class="tune-benefits">
+      <li><b data-i18n="tb.h1">Sin pruebas en planta</b><span data-i18n="tb.t1">Usa los cambios normales de la operación. No hay que perturbar el proceso.</span></li>
+      <li><b data-i18n="tb.h2">Sin cálculos manuales</b><span data-i18n="tb.t2">Pulso hace el modelo, la sintonía y las conversiones de unidades.</span></li>
+      <li><b data-i18n="tb.h3">Siempre activo</b><span data-i18n="tb.t3">Revisa los lazos de forma programada, no en una campaña puntual.</span></li>
+      <li><b data-i18n="tb.h4">Sintonía respaldada</b><span data-i18n="tb.t4">Cada propuesta se simula y debe cumplir un margen de robustez.</span></li>
+    </ul>
+    <p class="tune-sub mono-label" data-i18n="tu.how">Cómo lo hace</p>
+    <div class="tune-steps">
+      <div class="tune-step"><span class="tune-num">01</span><h3 data-i18n="tu.h1">Observa</h3><p data-i18n="tu.t1">Explora de forma programada el historial del lazo (PV, SP, salida y modo) y detecta los cambios que ocurren naturalmente en la operación.</p></div>
+      <div class="tune-step"><span class="tune-num">02</span><h3 data-i18n="tu.h2">Modela</h3><p data-i18n="tu.t2">De cada evento identifica un modelo del proceso y califica la calidad del ajuste.</p></div>
+      <div class="tune-step"><span class="tune-num">03</span><h3 data-i18n="tu.h3">Compara</h3><p data-i18n="tu.t3">Calcula sintonías candidatas con reglas reconocidas, las simula en lazo cerrado, exige un margen de robustez y marca la recomendada.</p></div>
+      <div class="tune-step"><span class="tune-num">04</span><h3 data-i18n="tu.h4">Sintoniza</h3><p data-i18n="tu.t4">Lleva la sintonía recomendada al sistema de control y sintoniza el lazo automáticamente.</p></div>
+    </div>
+    <div class="tune-meta">
+      <div class="tune-panel">
+        <h3 data-i18n="tu.m1">Pulso propone, usted ajusta</h3>
+        <p data-i18n="tu.m1a"><b>Pulso propone el enfoque:</b> seguimiento o rechazo de perturbaciones.</p>
+        <p data-i18n="tu.m1b"><b>Usted elige la agresividad:</b> agresiva, balanceada o conservadora.</p>
+      </div>
+      <div class="tune-panel">
+        <h3 data-i18n="tu.m2">Compatibilidad</h3>
+        <p data-i18n="tu.m2a">Trabaja con los principales sistemas de control distribuido del mercado y conoce el formato de sus bloques PID. Se conecta por OPC UA u OPC DA, o a un historiador o base de datos.</p>
+        <p data-i18n="tu.m2b">Interfaz en español, inglés, portugués, francés y alemán, con permisos por rol y registro de auditoría.</p>
+      </div>
+    </div>
+    <div class="tune-result">
+      <p data-i18n="tu.result">El resultado: lazos evaluados de forma continua y sintonizados automáticamente, con el modelo y la regla que respaldan cada constante.</p>
+      <a class="pill pill-orange" href="#contacto" data-topic="Pulso" data-i18n="tu.cta">Solicitar demo de Pulso</a>
+    </div>
+  </div>
+</section>
+
+<section id="opc-enlace" class="enlace lines-wrap">
+  <div class="wrap enlace-grid">
+    <div>
+      <span class="tag tag-accent" data-i18n="en.eyebrow">Descarga gratuita</span>
+      <h2>Kapptek OPC Enlace</h2>
+      <p class="enlace-lead" data-i18n="en.lead">La aplicación gratuita que diagnostica, corrige y verifica la comunicación OPC entre sus equipos y el sistema de control de planta.</p>
+      <ul class="enlace-list">
+        <li><small>01</small><b data-i18n="en.h1">Diagnostica y corrige</b><span data-i18n="en.t1">Revisa todo lo que necesita la comunicación OPC Classic (DCOM) y OPC UA: seguridad, cuentas y permisos, firewall, red, servicios, hora, puertos y certificados. Cada hallazgo explica cómo repararlo, con corrección automática reversible cuando es posible.</span></li>
+        <li><small>02</small><b data-i18n="en.h2">Replica la configuración</b><span data-i18n="en.t2">Exporta la configuración de un equipo que ya funciona y la importa en otro del mismo sitio, comparando ítem por ítem antes de aplicar.</span></li>
+        <li><small>03</small><b data-i18n="en.h3">Prueba la comunicación</b><span data-i18n="en.t3">Se conecta como cliente a servidores OPC DA, AE, HDA y UA para navegar, leer, escribir y suscribirse, y traduce cada error a su causa y su corrección.</span></li>
+        <li><small>04</small><b data-i18n="en.h4">Audita clientes OPC</b><span data-i18n="en.t4">Actúa como servidor de prueba para comprobar que los clientes de terceros liberan sus conexiones y cómo reaccionan ante cortes o mala calidad de datos, antes de conectarlos al sistema de control. Entrega un informe de auditoría.</span></li>
+      </ul>
+    </div>
+    <div class="dl-card">
+      <h3 data-i18n="dl.title">Descargar OPC Enlace</h3>
+      <p data-i18n="dl.lead">Complete sus datos para habilitar la descarga.</p>
+      <form class="dl-form" id="download-form" novalidate>
+        <div class="field"><label for="d-name" data-i18n="fm.name">Nombre</label><input id="d-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="d-role" data-i18n="dl.role">Cargo</label><input id="d-role" name="role" type="text" autocomplete="organization-title" required></div>
+        <div class="field"><label for="d-company" data-i18n="fm.company">Empresa</label><input id="d-company" name="company" type="text" autocomplete="organization" required></div>
+        <div class="field"><label for="d-country" data-i18n="dl.country">País</label><input id="d-country" name="country" type="text" autocomplete="country-name" required></div>
+        <div class="field full"><label for="d-email" data-i18n="dl.email">Correo corporativo</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
+        <p class="dl-note" data-i18n="dl.note">Solo se aceptan correos corporativos. No se admiten cuentas de Gmail, Outlook, Yahoo ni otros servicios gratuitos.</p>
+        <div class="form-foot">
+          <button type="submit" class="pill pill-orange" data-i18n="dl.send">Habilitar descarga</button>
+          <p class="form-status" id="download-status" role="status"></p>
+        </div>
+      </form>
+      <div class="dl-ready" id="download-ready">
+        <p data-i18n="dl.ready">Gracias. Su descarga está lista.</p>
+        <a class="pill pill-dark" id="download-link" href="#opc-enlace" data-i18n="dl.link">Descargar para Windows</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="enfoque">
+  <div class="wrap">
+    <div class="head-center">
+      <span class="tag tag-solid" data-i18n="ap.eyebrow">Nuestro enfoque</span>
+      <h2 data-i18n="ap.title">OTR Agent decide. <span class="grad">La IA lo explica.</span></h2>
+      <p data-i18n="ap.lead">Decisiones de control 24x7, explicadas y auditables, en una instalación local.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"/></svg></div>
+        <div><h3 data-i18n="ap.h1">OTR Agent toma las decisiones</h3><p data-i18n="ap.t1">Decide las acciones de control 24x7 con reglas deterministas, definidas con el contexto que aporta el especialista, que se pueden revisar y auditar. La IA explica cada decisión.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
+        <div><h3 data-i18n="ap.h2">La operación define el modo</h3><p data-i18n="ap.t2">Cada estrategia trabaja en el modo que la operación elija.</p>
+          <ul class="chips"><li data-i18n="ap.m1">Recomendar</li><li data-i18n="ap.m2">Confirmar</li><li data-i18n="ap.m3">Automático</li></ul></div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l6 4V10l6 4V4h6v17z"/></svg></div>
+        <div><h3 data-i18n="ap.h3">Local, en la red de control</h3><p data-i18n="ap.t3">OTR Agent se instala en la red de control de la planta, en un equipo sin acceso a internet. El soporte remoto se conecta por VPN, pasando por las distintas capas de la arquitectura de planta.</p></div>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div><h3 data-i18n="ap.h4">Cada decisión queda trazada</h3><p data-i18n="ap.t4">Cada acción se registra con su razón y se puede auditar de inicio a fin con el agente virtual.</p></div>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num grad">01</div><h3 data-i18n="st.h1">Diagnóstico</h3><p data-i18n="st.t1">Revisamos el proceso, los datos y los lazos de control, y acordamos dónde está el valor.</p></div>
+      <div class="step"><div class="step-num grad">02</div><h3 data-i18n="st.h2">Plataforma</h3><p data-i18n="st.t2">Instalamos y configuramos el ecosistema en la planta, integrado al sistema de control.</p></div>
+      <div class="step"><div class="step-num grad">03</div><h3 data-i18n="st.h3">Operación</h3><p data-i18n="st.t3">Software as a Service con soporte integrado y soporte remoto internacional.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-label="Planta">
+  <div class="wrap"><p data-i18n="band.text">Tecnología que trabaja en la planta, turno tras turno.</p></div>
+</section>
+
+<section id="nosotros" class="lines-wrap">
+  <div class="wrap about">
+    <div>
+      <span class="tag" style="background:#fff" data-i18n="ab.eyebrow">Nosotros</span>
+      <h2 data-i18n="ab.title">Tecnología propia, <span class="grad">probada en planta.</span></h2>
+      <p class="about-text" data-i18n="ab.p1">Desarrollamos nuestra propia tecnología para plantas de procesamiento de minerales y la operamos internacionalmente, con sistemas que trabajan 24x7 y soporte remoto.</p>
+      <ul class="checks">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg><div><b data-i18n="ab.f1">Operación real en planta</b><span data-i18n="ab.f1t">Sistemas trabajando 24x7 en plantas de distintos países.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg><div><b data-i18n="ab.f2">Demostrable en vivo</b><span data-i18n="ab.f2t">Mostramos el sistema real operando.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg><div><b data-i18n="ab.f3">Un solo ecosistema</b><span data-i18n="ab.f3t">Medición, balance, diagnóstico y control del mismo equipo.</span></div></li>
+      </ul>
+    </div>
+    <div>
+      <img class="about-photo" src="img/about.jpg" alt="Profesional con casco revisando una tableta frente a un molino en una planta concentradora" loading="lazy" width="1200" height="670">
+      <div class="place-bar" data-i18n="ab.places">Dónde estamos</div>
+      <div class="place"><b>Chile<small>Santiago</small></b><span>Isidora Goyenechea 3000, Piso 23, Las Condes</span></div>
+      <div class="place"><b>Chile<small>Viña del Mar</small></b><span>Limache 3421, Oficina 1210, Edificio Reitz II</span></div>
+      <div class="place"><b>México<small>Torreón</small></b><span>Río Jordán 966-2, Col. Estrella, CP 27010, Coahuila</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="contact-section lines-wrap">
+  <div class="wrap">
+    <div class="contact">
+      <div>
+        <h2 data-i18n="ct.title">Conversemos <span class="grad">sobre su planta.</span></h2>
+        <p class="contact-lead" data-i18n="ct.lead">Cuéntenos su proceso y coordinamos una demostración en vivo del sistema.</p>
+        <div class="contact-lines">
+          <div><small data-i18n="ct.mail">Correo</small><a href="mailto:info@kapptek.com">info@kapptek.com</a></div>
+        </div>
+      </div>
+      <form class="form" id="contact-form" novalidate>
+        <div class="field"><label for="f-name" data-i18n="fm.name">Nombre</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="f-company" data-i18n="fm.company">Empresa</label><input id="f-company" name="company" type="text" autocomplete="organization"></div>
+        <div class="field"><label for="f-email" data-i18n="fm.email">Correo electrónico</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-topic" data-i18n="fm.topic">Área de interés</label>
+          <select id="f-topic" name="topic">
+            <option value="OTR Agent">OTR Agent</option>
+            <option value="Serie ID">Serie ID</option>
+            <option value="Amina VM">Amina VM</option>
+            <option value="Pulso">Pulso</option>
+            <option value="OPC Nexus">OPC Nexus</option>
+            <option value="OPC Enlace">OPC Enlace</option>
+            <option value="Servicios" data-i18n="fm.opt.services">Servicios</option>
+          </select>
+        </div>
+        <div class="field full"><label for="f-message" data-i18n="fm.message">Mensaje</label><textarea id="f-message" name="message" required></textarea></div>
+        <div class="form-foot">
+          <button type="submit" class="pill pill-orange" data-i18n="fm.send">Preparar correo</button>
+          <p class="form-status" id="form-status" role="status" data-i18n="fm.hint">El botón abre su aplicación de correo con el mensaje listo para enviar.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="#inicio" aria-label="Kapptek"><img class="brand-logo" src="img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26" loading="lazy"></a>
+        <p style="margin-top:12px;max-width:26em" data-i18n="ft.tag">Optimización, IA y visión artificial para el procesamiento de minerales.</p>
+      </div>
+      <div>
+        <h3 data-i18n="ft.h1">Soluciones</h3>
+        <ul><li><a href="#serie-id">Serie ID</a></li><li><a href="#amina-vm">Amina VM</a></li><li><a href="#pulso">Pulso</a></li><li><a href="#otr-agent">OTR Agent</a></li><li><a href="#opc-nexus">OPC Nexus</a></li><li><a href="#opc-enlace">OPC Enlace</a></li></ul>
+      </div>
+      <div>
+        <h3 data-i18n="ft.h2">Empresa</h3>
+        <ul><li><a href="#enfoque" data-i18n="nav.approach">Enfoque</a></li><li><a href="#servicios" data-i18n="p6.name">Servicios</a></li><li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </div>
+    </div>
+    <p class="footer-note">© 2026 Kapptek OPT</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- English dictionary (Spanish lives in the markup) ----------
+  var EN = {
+    "nav.solutions": "Solutions", "nav.approach": "Approach", "nav.about": "About us", "nav.contact": "Contact", "nav.menu": "Menu",
+    "cta.demo.short": "Request a demo", "cta.demo": "Request a demonstration", "cta.solutions": "See solutions", "cta.more": "Request demo", "cta.talk": "Let's talk",
+    "an.new": "New", "an.text": "OTR Agent: operational virtual agent, 24x7", "an.link": "See solutions →",
+    "hero.title": "Your plant at its <span class=\"grad\">best operating point.</span>",
+    "hero.lead": "Measure, balance, diagnose and control the process in real time. <b>Kapptek</b> optimizes mineral processing plants with AI applied to the process, shift after shift.",
+    "co.title": "OTR Agent · Automatic mode", "co.note": "Illustrative example",
+    "co.k1": "Measure", "co.t1": "OTR Agent detects a deviation in the controller.",
+    "co.k2": "Decide", "co.t2": "A deterministic rule, with the specialist's context, adjusts the setpoint.",
+    "co.k3": "Explain", "co.t3": "The virtual agent explains, and the reason is logged and visible to the operator.",
+    "co.p": "Operating point held",
+    "stat.a": "Our systems run in the plant continuously, on every shift.", "stat.bn": "International", "stat.b": "We operate in several countries, with integrated support and remote assistance.", "stat.cn": "Complete ecosystem", "stat.c": "Machine vision, metallurgical balance, control loops and advanced control.",
+    "ch.eyebrow": "The challenge", "ch.title": "What the plant loses between one shift and the next",
+    "ch.lead": "The plant's operational and economic KPIs depend on decisions made on every shift.",
+    "ch.col1": "What happens today", "ch.col2": "With Kapptek",
+    "ch.p1": "Each shift operates its own way, at its own pace", "ch.p2": "Experts who move on", "ch.p3": "Scattered data", "ch.p4": "Studies that go stale",
+    "ch.a1": "A virtual agent working 24x7", "ch.d1": "It holds the plant at the defined operating point.",
+    "ch.a2": "Every decision is traced", "ch.d2": "Operating knowledge stays in the system.",
+    "ch.a3": "Reconciled metallurgical balance", "ch.d3": "One version of the data to decide on.",
+    "ch.a4": "Operational diagnosis, always on", "ch.d4": "A full-time advisor for the operation.",
+    "sol.title": "Our solutions", "sol.lead": "An ecosystem that follows the signal from the camera in the field to the control system.",
+    "p1.step": "01 · Measure", "p1.desc": "Spots operational deviations with machine vision, measuring online.", "p1.kind": "Machine vision", "p1.pain": "Deviations nobody sees in time.",
+    "p1.c1": "FrothID · flotation froth", "p1.c2": "BallID · grinding balls", "p1.c3": "RockID · rock and particle size", "p1.c4": "FeedID · tramp material detection",
+    "p2.step": "02 · Balance", "p2.desc": "The virtual metallurgist: online metallurgical balances on reconciled data.", "p2.kind": "Metallurgical balance", "p2.pain": "Scattered data and balances that do not close.",
+    "p2.c1": "Mass balance", "p2.c2": "Reconciliation", "p2.c3": "Inventories", "p2.c4": "Metallurgical accounting",
+    "p3.step": "03 · Diagnose", "p3.desc": "<b>Control loop auto-tuning.</b> It assesses and diagnoses each loop, and restores its performance with no plant tests.", "p3.kind": "Control loops", "p3.pain": "Loops in manual, oscillating or poorly tuned.",
+    "p3.c1": "Auto-tuning", "p3.c2": "Loop health and diagnosis", "p3.c3": "Intervention priority",
+    "p4.step": "04 · Control", "p4.desc": "An operational virtual agent that works 24x7 and explains each of its decisions.", "p4.kind": "Advanced control", "p4.pain": "Each shift operates its own way, at its own pace.",
+    "p4.c1": "PID and MPC control", "p4.c2": "Fuzzy logic", "p4.c3": "Inference", "p4.c4": "Economic KPIs", "p4.c5": "Historian and analytics", "p4.c6": "Skills", "p4.c7": "Context",
+    "p5.step": "05 · Connect", "p5.desc": "Joins OPC DA and UA clients in a single bridge to the control system.", "p5.kind": "Communications", "p5.pain": "Several systems, one bridge to plant control.", "p5.c3": "Control system (DCS)",
+    "p6.step": "Expert team", "p6.name": "Services", "p6.desc": "Specialists with operating knowledge who go with the software in the plant.", "p6.kind": "Specialized services", "p6.pain": "Integrated support, with international remote assistance.",
+    "p6.c1": "Optimization and control audits", "p6.c2": "Training", "p6.c3": "Remote support",
+    "tu.eyebrow": "Pulso · Control loops", "tu.title": "Assess, diagnose and <span class=\"grad\">automatically tune</span> your control loops.",
+    "tu.lead": "Pulso continuously monitors the performance of the plant's loops, diagnoses the cause of the problems and tunes them automatically.",
+    "tu.sub": "Automatic tuning, <span class=\"grad\">with no plant tests.</span>", "tu.sublead": "On that basis, Pulso learns from the operating history, calculates the best tuning for each PID loop and tunes it automatically with the calculated parameters.",
+    "pc.k1": "Assess", "pc.h1": "A health score per loop", "pc.t1": "It reads the four signals of each loop (process variable, setpoint, output and mode) and combines, with configurable weights, what matters for its performance.",
+    "pc.c11": "Time in automatic", "pc.c12": "Variability", "pc.c13": "Saturation", "pc.c14": "Minimum variance",
+    "pc.k2": "Diagnose", "pc.h2": "The cause, not just the symptom", "pc.t2": "It labels the cause of poor performance and groups oscillations shared by several loops to point to the loop that causes them.",
+    "pc.c21": "Oscillation", "pc.c22": "Valve stiction", "pc.c23": "Sluggish or aggressive tuning", "pc.c24": "Noisy or frozen sensor", "pc.c25": "Dominant dead time", "pc.c26": "Frequent mode changes",
+    "pc.k3": "Prioritize", "pc.h3": "Where to act first", "pc.t3": "It translates performance into economic impact based on the production, price and costs of each loop, and alerts you when a loop degrades.",
+    "pc.c31": "Health map by area", "pc.c32": "Worst-loop ranking", "pc.c33": "Daily evolution", "pc.c34": "Reports and alerts",
+    "cta.pulso": "See Pulso",
+    "tu.h1": "Observe", "tu.t1": "It scans the loop history on a schedule (PV, SP, output and mode) and detects the changes that occur naturally during operation.",
+    "tu.h2": "Model", "tu.t2": "From each event it identifies a process model and rates the quality of the fit.",
+    "tu.h3": "Compare", "tu.t3": "It calculates candidate tunings with recognized rules, simulates them in closed loop, requires a robustness margin and marks the recommended one.",
+    "tu.h4": "Tune", "tu.t4": "It takes the recommended tuning to the control system and tunes the loop automatically.",
+    "tb.h1": "No plant tests", "tb.t1": "It uses the normal changes of the operation. There is no need to disturb the process.", "tb.h2": "No manual calculations", "tb.t2": "Pulso does the model, the tuning and the unit conversions.", "tb.h3": "Always on", "tb.t3": "It reviews the loops on a schedule, not in a one-off campaign.", "tb.h4": "Backed tuning", "tb.t4": "Every proposal is simulated and must meet a robustness margin.", "tu.how": "How it works",
+    "tu.m1": "Pulso proposes, you adjust", "tu.m1a": "<b>Pulso proposes the focus:</b> setpoint tracking or disturbance rejection.", "tu.m1b": "<b>You choose the aggressiveness:</b> aggressive, balanced or conservative.",
+    "tu.m2": "Compatibility", "tu.m2a": "It works with the leading distributed control systems on the market and knows the format of their PID blocks. It connects through OPC UA or OPC DA, or to a historian or database.", "tu.m2b": "Interface in Spanish, English, Portuguese, French and German, with role-based permissions and an audit log.",
+    "tu.result": "The result: loops assessed continuously and tuned automatically, with the model and the rule behind every constant.", "tu.cta": "Request a Pulso demo",
+    "en.eyebrow": "Free download", "en.lead": "The free application that diagnoses, fixes and verifies OPC communication between your computers and the plant control system.",
+    "en.h1": "Diagnose and fix", "en.t1": "It checks everything OPC Classic (DCOM) and OPC UA communication needs: security, accounts and permissions, firewall, network, services, time, ports and certificates. Each finding explains how to repair it, with reversible automatic fixes where possible.",
+    "en.h2": "Replicate the configuration", "en.t2": "It exports the configuration of a computer that already works and imports it into another one at the same site, comparing item by item before applying.",
+    "en.h3": "Test the communication", "en.t3": "It connects as a client to OPC DA, AE, HDA and UA servers to browse, read, write and subscribe, and translates each error into its cause and its fix.",
+    "en.h4": "Audit OPC clients", "en.t4": "It acts as a test server to check that third-party clients release their connections and how they react to outages or bad data quality, before connecting them to the control system. It delivers an audit report.",
+    "dl.title": "Download OPC Enlace", "dl.lead": "Fill in your details to enable the download.", "dl.role": "Job title", "dl.country": "Country", "dl.email": "Corporate email",
+    "dl.note": "Only corporate email addresses are accepted. Gmail, Outlook, Yahoo and other free services are not allowed.",
+    "dl.send": "Enable download", "dl.ready": "Thank you. Your download is ready.", "dl.link": "Download for Windows",
+    "ap.eyebrow": "Our approach", "ap.title": "OTR Agent decides. <span class=\"grad\">AI explains it.</span>", "ap.lead": "Control decisions 24x7, explained and auditable, in a local installation.",
+    "ap.h1": "OTR Agent makes the decisions", "ap.t1": "It decides control actions 24x7 with deterministic rules, defined with the context provided by the specialist, that can be reviewed and audited. AI explains each decision.",
+    "ap.h2": "The operation sets the mode", "ap.t2": "Each strategy runs in the mode the operation chooses.",
+    "ap.m1": "Recommend", "ap.m2": "Confirm", "ap.m3": "Automatic",
+    "ap.h3": "Local, on the control network", "ap.t3": "OTR Agent is installed on the plant control network, on a computer with no internet access. Remote support connects through a VPN, passing through the layers of the plant architecture.",
+    "ap.h4": "Every decision is traced", "ap.t4": "Each action is logged with its reason and can be audited end to end with the virtual agent.",
+    "st.h1": "Diagnosis", "st.t1": "We review the process, the data and the control loops, and agree on where the value is.",
+    "st.h2": "Platform", "st.t2": "We install and configure the ecosystem in the plant, integrated with the control system.",
+    "st.h3": "Operation", "st.t3": "Software as a Service with integrated support and international remote support.",
+    "ab.eyebrow": "About us", "ab.title": "Proprietary technology, <span class=\"grad\">proven in the plant.</span>",
+    "ab.p1": "We develop our own technology for mineral processing plants and operate it internationally, with systems that work 24x7 and remote support.",
+    "ab.f1": "Real plant operation", "ab.f1t": "Systems working 24x7 in plants in several countries.",
+    "ab.f2": "Shown live", "ab.f2t": "We show the real system running.",
+    "ab.f3": "One ecosystem", "ab.f3t": "Measurement, balance, diagnosis and control from the same team.",
+    "ab.places": "Where we are", "band.text": "Technology that works in the plant, shift after shift.",
+    "ct.title": "Let's talk <span class=\"grad\">about your plant.</span>", "ct.lead": "Tell us about your process and we will arrange a live demonstration of the system.",
+    "ct.mail": "Email", "ct.phone": "Phone",
+    "fm.name": "Name", "fm.company": "Company", "fm.email": "Email", "fm.topic": "Area of interest", "fm.opt.services": "Services", "fm.message": "Message",
+    "fm.send": "Prepare email", "fm.hint": "The button opens your email application with the message ready to send.",
+    "ft.tag": "Optimization, AI and machine vision for mineral processing.", "ft.h1": "Solutions", "ft.h2": "Company"
+  };
+
+  var MESSAGES = {
+    es: {
+      missing: "Complete su nombre, su correo electrónico y el mensaje.",
+      opened: "Se abrió su aplicación de correo con el mensaje listo. Si no se abrió, escríbanos a info@kapptek.com.",
+      subject: "Consulta desde kapptek.com",
+      labels: { name: "Nombre", company: "Empresa", email: "Correo", topic: "Área de interés" },
+      title: "Kapptek | IA aplicada a la optimización de procesos mineros",
+      dlMissing: "Complete todos los campos.",
+      dlEmail: "Ingrese un correo válido.",
+      dlFree: "Use su correo corporativo. No se aceptan correos de servicios gratuitos.",
+      dlSending: "Registrando sus datos…",
+      dlFailed: "No pudimos registrar sus datos. Intente de nuevo o escríbanos a info@kapptek.com.",
+      dlNotReady: "Sus datos son válidos, pero la descarga aún no está habilitada en este sitio. Escríbanos a info@kapptek.com."
+    },
+    en: {
+      missing: "Please fill in your name, your email and the message.",
+      opened: "Your email application opened with the message ready. If it did not, write to us at info@kapptek.com.",
+      subject: "Inquiry from kapptek.com",
+      labels: { name: "Name", company: "Company", email: "Email", topic: "Area of interest" },
+      title: "Kapptek | AI applied to mineral process optimization",
+      dlMissing: "Please fill in all the fields.",
+      dlEmail: "Enter a valid email address.",
+      dlFree: "Use your corporate email. Free email services are not accepted.",
+      dlSending: "Registering your details…",
+      dlFailed: "We could not register your details. Try again or write to us at info@kapptek.com.",
+      dlNotReady: "Your details are valid, but the download is not enabled on this site yet. Write to us at info@kapptek.com."
+    }
+  };
+
+  var nodes = document.querySelectorAll("[data-i18n]");
+  var ES = {};
+  nodes.forEach(function (el) {
+    var key = el.getAttribute("data-i18n");
+    if (ES[key] === undefined) { ES[key] = el.innerHTML; }
+  });
+  var currentLang = "es";
+
+  function setLanguage(lang) {
+    currentLang = lang === "en" ? "en" : "es";
+    var dict = currentLang === "en" ? EN : ES;
+    nodes.forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (dict[key] !== undefined) { el.innerHTML = dict[key]; }
+    });
+    document.documentElement.lang = currentLang;
+    document.title = MESSAGES[currentLang].title;
+    document.querySelectorAll(".lang button").forEach(function (btn) {
+      btn.setAttribute("aria-pressed", String(btn.getAttribute("data-lang") === currentLang));
+    });
+    try { localStorage.setItem("kapptek-lang", currentLang); } catch (err) { /* storage unavailable */ }
+  }
+
+  document.querySelectorAll(".lang button").forEach(function (btn) {
+    btn.addEventListener("click", function () { setLanguage(btn.getAttribute("data-lang")); });
+  });
+
+  var savedLang = null;
+  try { savedLang = localStorage.getItem("kapptek-lang"); } catch (err) { /* storage unavailable */ }
+  if (savedLang === "en") { setLanguage("en"); }
+
+  // ---------- Mobile menu ----------
+  var nav = document.getElementById("site-nav");
+  var toggle = document.getElementById("menu-toggle");
+  toggle.addEventListener("click", function () {
+    var open = nav.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(open));
+  });
+  nav.addEventListener("click", function (event) {
+    if (event.target.tagName === "A") {
+      nav.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // ---------- Header shadow on scroll ----------
+  var header = document.querySelector(".site-header");
+  function onScroll() { header.classList.toggle("is-scrolled", window.scrollY > 8); }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // ---------- Reveal on scroll (content stays visible without it) ----------
+  var canAnimate = "IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (canAnimate) {
+    var targets = document.querySelectorAll(".head-center, .head-left, .compare-card, .line, .card, .step, .tune-step, .tune-panel, .tune-benefits, .enlace-grid > *, .about > *, .contact, .band p");
+    var viewportHeight = window.innerHeight;
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add("is-in"); observer.unobserve(entry.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+    targets.forEach(function (el, index) {
+      if (el.getBoundingClientRect().top < viewportHeight) { return; }
+      el.classList.add("reveal");
+      el.style.transitionDelay = (index % 3) * 90 + "ms";
+      observer.observe(el);
+    });
+    document.documentElement.classList.add("js-reveal");
+  }
+
+  // ---------- Product buttons preselect the topic in the contact form ----------
+  var form = document.getElementById("contact-form");
+  document.querySelectorAll("[data-topic]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      form.elements.topic.value = link.getAttribute("data-topic");
+    });
+  });
+
+  // ---------- OPC Enlace download: registration with corporate email only ----------
+  // Set both values before going live:
+  //   LEAD_ENDPOINT: URL that receives the registration as a JSON POST (form service or own backend).
+  //   DOWNLOAD_URL:  URL of the Windows installer.
+  var LEAD_ENDPOINT = "";
+  var DOWNLOAD_URL = "";
+  var FREE_EMAIL_PROVIDERS = ["gmail", "googlemail", "hotmail", "outlook", "live", "msn", "yahoo", "ymail", "rocketmail", "icloud", "me", "mac", "aol", "proton", "protonmail", "pm", "gmx", "mail", "email", "yandex", "zoho", "hey", "tutanota", "tuta", "fastmail", "inbox", "qq", "163", "126", "terra", "uol", "bol", "vtr", "live"];
+  var downloadForm = document.getElementById("download-form");
+  var downloadStatus = document.getElementById("download-status");
+  var downloadReady = document.getElementById("download-ready");
+
+  function isCorporateEmail(email) {
+    var domain = email.split("@")[1] || "";
+    var provider = domain.split(".")[0];
+    return FREE_EMAIL_PROVIDERS.indexOf(provider) === -1;
+  }
+
+  function showDownloadStatus(message, isError) {
+    downloadStatus.textContent = message;
+    downloadStatus.classList.toggle("is-error", Boolean(isError));
+  }
+
+  downloadForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var text = MESSAGES[currentLang];
+    var data = {
+      name: downloadForm.elements.name.value.trim(),
+      role: downloadForm.elements.role.value.trim(),
+      company: downloadForm.elements.company.value.trim(),
+      country: downloadForm.elements.country.value.trim(),
+      email: downloadForm.elements.email.value.trim().toLowerCase(),
+      product: "Kapptek OPC Enlace",
+      language: currentLang
+    };
+    downloadReady.classList.remove("is-on");
+    if (!data.name || !data.role || !data.company || !data.country || !data.email) { showDownloadStatus(text.dlMissing, true); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { showDownloadStatus(text.dlEmail, true); return; }
+    if (!isCorporateEmail(data.email)) { showDownloadStatus(text.dlFree, true); return; }
+    if (!LEAD_ENDPOINT || !DOWNLOAD_URL) { showDownloadStatus(text.dlNotReady, true); return; }
+    showDownloadStatus(text.dlSending, false);
+    fetch(LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+      .then(function (response) {
+        if (!response.ok) { throw new Error("Registration failed"); }
+        showDownloadStatus("", false);
+        document.getElementById("download-link").href = DOWNLOAD_URL;
+        downloadReady.classList.add("is-on");
+      })
+      .catch(function () { showDownloadStatus(text.dlFailed, true); });
+  });
+
+  // ---------- Contact form: builds an email, never claims it was sent ----------
+  var status = document.getElementById("form-status");
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var text = MESSAGES[currentLang];
+    var name = form.elements.name.value.trim();
+    var company = form.elements.company.value.trim();
+    var email = form.elements.email.value.trim();
+    var topic = form.elements.topic.value;
+    var message = form.elements.message.value.trim();
+    if (!name || !email || !message) {
+      status.textContent = text.missing;
+      status.style.color = "#c2410c";
+      return;
+    }
+    var body = text.labels.name + ": " + name + "\n" +
+      text.labels.company + ": " + company + "\n" +
+      text.labels.email + ": " + email + "\n" +
+      text.labels.topic + ": " + topic + "\n\n" + message;
+    var href = "mailto:info@kapptek.com?subject=" + encodeURIComponent(text.subject + " · " + topic) + "&body=" + encodeURIComponent(body);
+    status.style.color = "";
+    status.textContent = text.opened;
+    window.location.href = href;
+  });
+})();
+</script>
+</body>
+</html>
