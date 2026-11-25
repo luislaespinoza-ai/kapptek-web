@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es" data-title-es="Fantasmas de comunicación: las conexiones OPC que nadie cerró | Kapptek" data-title-en="Communication ghosts: the OPC connections nobody closed | Kapptek">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fantasmas de comunicación: las conexiones OPC que nadie cerró | Kapptek</title>
+<meta name="description" content="Clientes que se desconectan sin liberar sus comunicaciones dejan carga que se acumula en silencio, hasta obligar a reiniciar los servicios del DCS.">
+<link rel="canonical" href="https://www.kapptek.com/blog/fantasmas-de-comunicacion-opc.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26"></a>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a href="../index.html#soluciones"><span data-l="es">Soluciones</span><span data-l="en">Solutions</span></a>
+      <a href="../index.html#enfoque"><span data-l="es">Enfoque</span><span data-l="en">Approach</span></a>
+      <a href="../index.html#ciberseguridad"><span data-l="es">Ciberseguridad</span><span data-l="en">Cybersecurity</span></a>
+      <a href="../index.html#nosotros"><span data-l="es">Nosotros</span><span data-l="en">About us</span></a>
+      <a href="index.html" aria-current="page">Blog</a>
+      <a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+    </nav>
+    <div class="header-tools">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill pill-orange pill-small header-cta" href="../index.html#contacto"><span data-l="es">Solicitar demostración</span><span data-l="en">Request a demo</span></a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav"><span data-l="es">Menú</span><span data-l="en">Menu</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<article class="post">
+  <div class="wrap post-wrap">
+    <a class="post-back" href="index.html">← <span data-l="es">Volver al blog</span><span data-l="en">Back to the blog</span></a>
+    <span class="post-tag"><span data-l="es">Comunicaciones industriales</span><span data-l="en">Industrial communications</span></span>
+    <h1><span data-l="es">Fantasmas de comunicación: las conexiones OPC que nadie cerró</span><span data-l="en">Communication ghosts: the OPC connections nobody closed</span></h1>
+    <p class="post-meta">Kapptek · <span data-l="es">25 de noviembre de 2026</span><span data-l="en">November 25, 2026</span> · <span data-l="es">6 min de lectura</span><span data-l="en">6 min read</span></p>
+  </div>
+  <div class="wrap post-figure"><img src="../img/blog-fantasmas.jpg" alt="Sala de gabinetes de control donde unas pocas líneas de datos sólidas y muchas líneas tenues, sin origen, llegan al mismo controlador" width="1200" height="675"></div>
+  <div class="wrap post-wrap post-body">
+    <div data-l="es">
+<p class="post-lead">Hay fallas de comunicación que no empiezan con un error, sino con una desconexión que parecía normal. Una aplicación se cierra, se reinicia o pierde la red, vuelve a conectarse y todo sigue funcionando. Lo que nadie ve es lo que quedó atrás en el sistema de control.</p>
+<h2>Qué es un fantasma de comunicación</h2>
+<p>Cuando un cliente OPC se conecta, pide al servidor que le reserve recursos: una sesión, grupos de variables y suscripciones para recibir los datos. Al terminar, el cliente debe liberar todo eso de forma ordenada.</p>
+<p>Una conexión fantasma es la que un cliente dejó abierta al reconectarse sin cerrar la anterior. Ya no hay nadie detrás, pero sigue ocupando recursos en el servidor, que continúa atendiendo consultas que nadie recibe.</p>
+<h2>Por qué se generan</h2>
+<ul>
+<li><b>El cliente se reconecta sin cerrar la conexión anterior.</b> Es la causa principal. Ante cualquier interrupción, la aplicación abre una sesión nueva con nuevas suscripciones y deja viva la que tenía.</li>
+<li><b>El cliente está mal programado</b> y no libera sus comunicaciones OPC al desconectarse.</li>
+<li><b>La aplicación se cierra de forma abrupta o se corta la red.</b> El cliente no alcanza a avisar que se va, y su conexión queda abierta hasta que el servidor la da por perdida. Si mientras tanto se reconecta, se suma otra.</li>
+</ul>
+<h2>Cómo crecen sin que nadie lo note</h2>
+<p>Un fantasma por sí solo no hace daño. El problema es que se acumulan. Cada desconexión mal cerrada deja otro conjunto de consultas activas, y una aplicación que se reconecta varias veces al día puede multiplicar su carga sobre el sistema de control sin que nada cambie a la vista.</p>
+<p>No hay alarma. Las aplicaciones reciben sus datos, las pantallas funcionan y la carga sube un poco cada semana. Desde el punto de vista del sistema de control, el número de clientes y de consultas crece, aunque en la planta haya las mismas aplicaciones de siempre.</p>
+<h2>Cómo termina</h2>
+<p>Termina cuando la carga acumulada supera lo que las comunicaciones del sistema de control pueden atender. Las comunicaciones colapsan y la única salida es reiniciar los servicios del DCS para limpiar todo lo que quedó abierto.</p>
+<p>Ese reinicio afecta a la operación, y además borra la evidencia: después de reiniciar todo vuelve a funcionar, la causa queda sin identificar y el ciclo comienza otra vez.</p>
+<h2>Cómo detectarlos</h2>
+<ol>
+<li>El sistema de control muestra más clientes o más consultas activas que las aplicaciones realmente conectadas.</li>
+<li>La carga de comunicaciones aumenta con el tiempo sin que se hayan agregado aplicaciones ni variables.</li>
+<li>Los problemas desaparecen después de un reinicio y vuelven semanas o meses más tarde.</li>
+</ol>
+<p>También conviene probar a los clientes antes de conectarlos. Kapptek OPC Enlace, nuestra aplicación gratuita, actúa como servidor de prueba para comprobar que los clientes de terceros liberan sus conexiones y cómo reaccionan ante cortes, y entrega un informe de auditoría.</p>
+<h2>Cómo ayuda OPC Nexus</h2>
+<p>OPC Nexus se ubica entre las aplicaciones y el sistema de control, y aborda el problema en tres frentes.</p>
+<ul>
+<li><b>Protege siempre al sistema de control.</b> Los clientes OPC DA y UA se conectan al puente, no al DCS. Hacia el sistema de control, OPC Nexus mantiene una sola suscripción, independiente de cuántos clientes haya conectados del otro lado, sean reales o fantasmas. Los fantasmas no llegan al DCS.</li>
+<li><b>Detecta los fantasmas.</b> Identifica cuando un mismo cliente mantiene más conexiones simultáneas que las toleradas y, si la situación persiste, marca las más antiguas como fantasmas. También reconoce cuando hay evidencia directa de que el cliente ya no está, porque su proceso terminó o cerró su conexión de red. En ambos casos lo registra y genera una alerta.</li>
+<li><b>Los contiene.</b> Según la política configurada, solo detecta y avisa, o además cierra las conexiones fantasma para liberar los recursos, mientras el cliente real sigue conectado.</li>
+</ul>
+<h2>Y deja la evidencia</h2>
+<p>El reinicio de servicios borraba el rastro. OPC Nexus lo conserva: su agente virtual resume en lenguaje natural cuántas conexiones fantasma hay en este momento, qué cliente las deja y cuántas veces ocurrió en el período revisado. Además, cada apertura y cierre de sesión queda registrado, lo que permite reconstruir la historia de conexión de cualquier cliente.</p>
+<p>Con esa información se puede ir al proveedor de la aplicación con datos concretos, en lugar de reiniciar y esperar a que vuelva a pasar. Sumado al control de la carga de escrituras, esto mantiene el DCS estable sin depender de que cada aplicación de terceros se comporte bien.</p>
+</div>
+    <div data-l="en">
+<p class="post-lead">Some communication failures do not start with an error, but with a disconnection that looked normal. An application closes, restarts or loses the network, reconnects, and everything keeps working. What nobody sees is what was left behind in the control system.</p>
+<h2>What a communication ghost is</h2>
+<p>When an OPC client connects, it asks the server to reserve resources for it: a session, groups of variables and subscriptions to receive data. When it finishes, the client must release all of that in an orderly way.</p>
+<p>A ghost connection is one that a client left open when it reconnected without closing the previous one. Nobody is behind it anymore, but it still takes up resources on the server, which keeps serving requests that nobody receives.</p>
+<h2>Why they appear</h2>
+<ul>
+<li><b>The client reconnects without closing the previous connection.</b> This is the main cause. After any interruption, the application opens a new session with new subscriptions and leaves the old one alive.</li>
+<li><b>The client is poorly programmed</b> and does not release its OPC communications when it disconnects.</li>
+<li><b>The application closes abruptly or the network drops.</b> The client never gets to announce that it is leaving, and its connection stays open until the server gives it up for lost. If it reconnects in the meantime, another one is added.</li>
+</ul>
+<h2>How they grow unnoticed</h2>
+<p>A single ghost does no harm. The problem is that they accumulate. Each badly closed disconnection leaves another set of active requests, and an application that reconnects several times a day can multiply its load on the control system with no visible change.</p>
+<p>There is no alarm. Applications receive their data, displays work and the load rises a little every week. From the control system's point of view, the number of clients and requests grows, even though the plant has the same applications as always.</p>
+<h2>How it ends</h2>
+<p>It ends when the accumulated load exceeds what the control system's communications can handle. Communications collapse and the only way out is to restart the DCS services to clear everything that was left open.</p>
+<p>That restart affects operations, and it also erases the evidence: after the restart everything works again, the cause remains unidentified and the cycle starts over.</p>
+<h2>How to detect them</h2>
+<ol>
+<li>The control system shows more clients or more active requests than the applications actually connected.</li>
+<li>The communication load increases over time although no applications or variables have been added.</li>
+<li>Problems disappear after a restart and return weeks or months later.</li>
+</ol>
+<p>It also pays to test clients before connecting them. Kapptek OPC Enlace, our free application, acts as a test server to check that third-party clients release their connections and how they react to outages, and delivers an audit report.</p>
+<h2>How OPC Nexus helps</h2>
+<p>OPC Nexus sits between the applications and the control system, and addresses the problem on three fronts.</p>
+<ul>
+<li><b>It always protects the control system.</b> OPC DA and UA clients connect to the bridge, not to the DCS. Towards the control system, OPC Nexus keeps a single subscription, regardless of how many clients are connected on the other side, real or ghost. Ghosts do not reach the DCS.</li>
+<li><b>It detects ghosts.</b> It identifies when the same client holds more simultaneous connections than tolerated and, if the situation persists, marks the oldest ones as ghosts. It also recognizes when there is direct evidence that the client is gone, because its process ended or it closed its network connection. In both cases it logs the event and raises an alert.</li>
+<li><b>It contains them.</b> Depending on the configured policy, it only detects and warns, or it also closes the ghost connections to free the resources, while the real client stays connected.</li>
+</ul>
+<h2>And it keeps the evidence</h2>
+<p>Restarting services used to erase the trail. OPC Nexus keeps it: its virtual agent summarizes in natural language how many ghost connections there are right now, which client leaves them and how many times it happened in the period reviewed. In addition, every session opening and closing is logged, which makes it possible to reconstruct the connection history of any client.</p>
+<p>With that information, you can go to the application's vendor with concrete data, instead of restarting and waiting for it to happen again. Together with control of the write load, this keeps the DCS stable without depending on every third-party application behaving well.</p>
+</div>
+    <aside class="post-cta">
+      <div>
+        <h2><span data-l="es">Mantenga estable su sistema de control</span><span data-l="en">Keep your control system stable</span></h2>
+        <p><span data-l="es">OPC Nexus une a los clientes OPC DA y UA en un solo puente, para que lo que hagan las aplicaciones no se acumule en el DCS.</span><span data-l="en">OPC Nexus joins OPC DA and UA clients in a single bridge, so that what applications do does not build up in the DCS.</span></p>
+      </div>
+      <a class="pill pill-orange" href="../index.html#opc-nexus"><span data-l="es">Conocer OPC Nexus</span><span data-l="en">Discover OPC Nexus</span></a>
+    </aside>
+  </div>
+</article>
+<section class="blog-list more">
+  <div class="wrap">
+    <h2 class="more-title"><span data-l="es">Más artículos</span><span data-l="en">More articles</span></h2>
+    <div class="post-grid two">
+      <a class="post-card" href="lazo-de-control-mal-sintonizado.html">
+        <img src="../img/blog-lazo.jpg" alt="Tubería de proceso con un transmisor y una válvula de control, y una señal verde que oscila sin estabilizarse alrededor de su valor deseado" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Control de procesos</span><span data-l="en">Process control</span></span>
+          <h2><span data-l="es">Cómo saber si un lazo de control está mal sintonizado</span><span data-l="en">How to tell if a control loop is poorly tuned</span></h2>
+          <p><span data-l="es">Seis señales que se ven desde la sala de control, y por qué conviene diagnosticar antes de cambiar parámetros.</span><span data-l="en">Six signs you can see from the control room, and why it pays to diagnose before changing parameters.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+      <a class="post-card" href="errores-opc-dcom.html">
+        <img src="../img/blog-dcom.jpg" alt="Dos gabinetes con equipos separados por una barrera tenue: varias líneas de datos se detienen a medio camino y solo una logra cruzar" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Comunicaciones industriales</span><span data-l="en">Industrial communications</span></span>
+          <h2><span data-l="es">Errores de comunicación OPC con DCOM: por qué son tan difíciles de diagnosticar</span><span data-l="en">OPC communication errors with DCOM: why they are so hard to diagnose</span></h2>
+          <p><span data-l="es">La configuración está repartida en dos equipos y los mensajes de error dicen poco. Qué revisar y cómo OPC Enlace facilita las integraciones.</span><span data-l="en">The configuration is spread across two machines and the error messages say little. What to check, and how OPC Enlace makes integrations easier.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26" loading="lazy"></a>
+    <p><span data-l="es">Optimización, IA y visión artificial para el procesamiento de minerales.</span><span data-l="en">Optimization, AI and machine vision for mineral processing.</span></p>
+    <p class="footer-links"><a href="../index.html"><span data-l="es">Inicio</span><span data-l="en">Home</span></a><a href="index.html">Blog</a><a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a></p>
+  </div>
+  <div class="wrap"><p class="footer-note">© 2026 Kapptek OPT</p></div>
+</footer>
+<script src="blog.js"></script>
+</body>
+</html>

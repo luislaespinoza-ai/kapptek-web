@@ -223,9 +223,11 @@ section { padding: 96px 0; }
 .tune-caps .tune-step h3 { font-size: 22px; }
 .tune-caps .chips { margin-top: auto; padding-top: 10px; }
 .tune-h3 { font-size: clamp(26px, 3.4vw, 38px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.08; text-align: center; margin: 72px auto 0; }
-.tune-h3 .grad { color: #c5d6e4; }
+.tune-h3 .grad { color: var(--orange); }
 .tune-h3-lead { text-align: center; font-size: 18px; color: rgba(255,255,255,0.84); max-width: 44em; margin: 14px auto 36px; }
 .tune-panel p + p { margin-top: 8px; }
+.tune-panel.is-key { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.5); border-left: 4px solid #fff; }
+.tune-panel .tune-lead { font-size: 21px; font-weight: 800; letter-spacing: -0.015em; line-height: 1.25; color: #fff; margin-bottom: 12px; }
 .tune-benefits { list-style: none; margin: 0 0 44px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid rgba(255,255,255,0.22); border-bottom: 1px solid rgba(255,255,255,0.22); }
 .tune-benefits li { padding: 22px 22px 24px; min-width: 0; }
 .tune-benefits li + li { border-left: 1px solid rgba(255,255,255,0.22); }
@@ -270,6 +272,23 @@ section { padding: 96px 0; }
 .dl-ready { display: none; margin-top: 18px; padding: 18px; border-radius: 16px; background: var(--mist); border: 1px solid var(--line); }
 .dl-ready.is-on { display: block; }
 .dl-ready p { font-size: 15px; margin-bottom: 12px; }
+
+/* ---------- Cybersecurity ---------- */
+.secure-section { padding-top: 0; }
+.secure { background: var(--dark-deep); color: #fff; border-radius: 48px; padding: 72px 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; position: relative; overflow: hidden; }
+.secure > * { min-width: 0; position: relative; }
+.secure::before { content: ""; position: absolute; width: 460px; height: 460px; left: -170px; bottom: -220px; border-radius: 50%; border: 60px solid rgba(255,255,255,0.045); pointer-events: none; }
+.secure .tag { background: rgba(255,255,255,0.14); color: #fff; }
+.secure h2 { font-size: clamp(30px, 4.2vw, 48px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.05; }
+.secure h2 .grad { color: var(--orange); }
+.secure-lead { margin-top: 18px; font-size: 18.5px; color: rgba(255,255,255,0.84); }
+.secure-shield { width: 64px; height: 64px; margin-top: 30px; color: var(--seafoam); }
+.secure-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 14px; align-self: center; }
+.secure-list li { display: grid; grid-template-columns: 30px 1fr; gap: 16px; align-items: start; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16); border-radius: 20px; padding: 22px; min-width: 0; transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; }
+.secure-list li:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.4); }
+.secure-list svg { width: 28px; height: 28px; color: var(--seafoam); margin-top: 2px; display: block; }
+.secure-list b { display: block; font-size: 18.5px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 6px; }
+.secure-list span { font-size: 15px; color: rgba(255,255,255,0.82); }
 
 /* ---------- Effects ---------- */
 .site-header { transition: box-shadow 0.3s ease, background-color 0.3s ease; }
@@ -357,7 +376,8 @@ section { padding: 96px 0; }
   .header-tools { margin-left: auto; }
   .menu-toggle { display: inline-block; }
   .header-cta { display: none; }
-  .lines, .cards, .about, .contact, .enlace-grid { grid-template-columns: 1fr; }
+  .lines, .cards, .about, .contact, .enlace-grid, .secure { grid-template-columns: 1fr; }
+  .secure { padding: 48px 32px; border-radius: 36px; }
   .contact { padding: 48px 32px; border-radius: 36px; }
   .stats { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; gap: 28px; }
@@ -372,7 +392,8 @@ section { padding: 96px 0; }
 @media (max-width: 640px) {
   body { font-size: 16px; }
   .compare { grid-template-columns: 1fr; }
-  .enlace-list, .dl-form { grid-template-columns: 1fr; }
+  .enlace-list, .dl-form, .secure-list { grid-template-columns: 1fr; }
+  .secure { padding: 36px 20px; border-radius: 28px; }
   .tune-steps { grid-template-columns: 1fr; }
   .tune-benefits { grid-template-columns: 1fr; }
   .tune-benefits li + li { border-left: 0; border-top: 1px solid rgba(255,255,255,0.22); }
@@ -387,6 +408,18 @@ section { padding: 96px 0; }
   .announce i { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+/* Blog teaser */
+.post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.post-card { display: flex; flex-direction: column; background: var(--paper); border: 1px solid var(--line); border-radius: var(--card-radius); overflow: hidden; text-decoration: none; box-shadow: var(--shadow); transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+.post-card:hover { transform: translateY(-5px); border-color: rgba(var(--accent-rgb),0.45); box-shadow: 0 30px 56px -24px rgba(var(--dark-rgb),0.35), 0 2px 6px rgba(var(--dark-rgb),0.05); }
+.post-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+.post-card-body { padding: 26px 28px 28px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; flex: 1; }
+.post-card .tag { margin-bottom: 0; }
+.post-card h3 { font-size: 21px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
+.post-card p { color: var(--slate); font-size: 15.5px; }
+.post-more { margin-top: auto; padding-top: 6px; font-size: 14px; font-weight: 700; color: var(--teal); }
+@media (max-width: 1000px) { .post-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .post-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -397,7 +430,9 @@ section { padding: 96px 0; }
     <nav class="nav" id="site-nav" aria-label="Principal">
       <a href="#soluciones" data-i18n="nav.solutions">Soluciones</a>
       <a href="#enfoque" data-i18n="nav.approach">Enfoque</a>
+      <a href="#ciberseguridad" data-i18n="nav.security">Ciberseguridad</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
+      <a href="blog/index.html">Blog</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
     </nav>
     <div class="header-tools">
@@ -490,7 +525,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#contacto" data-topic="Serie ID" data-i18n="cta.more">Solicitar demo</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/serie-id.jpg" alt="Cámara de visión artificial detectando una maraña de alambre en la descarga de mineral de un camión" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h3l2-3h8l2 3h3v11H3z"/><circle cx="12" cy="13" r="4"/></svg><span data-i18n="p1.kind">Visión artificial</span></div>
+          <div class="line-icon"><span data-i18n="p1.kind">Visión artificial</span></div>
           <p class="line-pain" data-i18n="p1.pain">Desviaciones que nadie ve a tiempo.</p>
           <ul class="chips">
             <li data-i18n="p1.c1">FrothID · espuma de flotación</li>
@@ -509,7 +544,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#contacto" data-topic="Amina VM" data-i18n="cta.more">Solicitar demo</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/amina-vm.jpg" alt="Vista elevada de una planta concentradora con los flujos de material trazados como líneas" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M5 8h14M5 8l-2 6a3 3 0 0 0 6 0zM19 8l-2 6a3 3 0 0 0 6 0zM8 20h8"/></svg><span data-i18n="p2.kind">Balance metalúrgico</span></div>
+          <div class="line-icon"><span data-i18n="p2.kind">Balance metalúrgico</span></div>
           <p class="line-pain" data-i18n="p2.pain">Datos dispersos y balances que no cierran.</p>
           <ul class="chips">
             <li data-i18n="p2.c1">Balance de masa</li>
@@ -528,7 +563,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#sintonia" data-i18n="cta.pulso">Ver Pulso</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/pulso.jpg" alt="Transmisor y válvula de control sobre una tubería, con una señal que oscila y se estabiliza" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l2-6 4 12 3-9 2 3h5"/></svg><span data-i18n="p3.kind">Lazos de control</span></div>
+          <div class="line-icon"><span data-i18n="p3.kind">Lazos de control</span></div>
           <p class="line-pain" data-i18n="p3.pain">Lazos en manual, oscilantes o mal sintonizados.</p>
           <ul class="chips">
             <li class="chip-key" data-i18n="p3.c1">Autosintonía</li>
@@ -546,7 +581,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#contacto" data-topic="OTR Agent" data-i18n="cta.more">Solicitar demo</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/otr-agent.jpg" alt="Molino en operación al anochecer, rodeado por un anillo de luz con líneas hacia la correa de alimentación y los hidrociclones" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 8 8" stroke-width="3.2"/><circle cx="12" cy="12" r="2"/></svg><span data-i18n="p4.kind">Control avanzado</span></div>
+          <div class="line-icon"><span data-i18n="p4.kind">Control avanzado</span></div>
           <p class="line-pain" data-i18n="p4.pain">Cada turno opera a su manera y a su ritmo.</p>
           <ul class="chips">
             <li data-i18n="p4.c1">Control PID y MPC</li>
@@ -568,7 +603,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#contacto" data-topic="OPC Nexus" data-i18n="cta.more">Solicitar demo</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/opc-nexus.jpg" alt="Sala de gabinetes de control con varias líneas de datos que se unen en un servidor y siguen como una sola hacia el sistema de control" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="6" height="6"/><rect x="16" y="9" width="6" height="6"/><path d="M8 12h8"/></svg><span data-i18n="p5.kind">Comunicaciones</span></div>
+          <div class="line-icon"><span data-i18n="p5.kind">Comunicaciones</span></div>
           <p class="line-pain" data-i18n="p5.pain">Varios sistemas, un solo puente al control de planta.</p>
           <ul class="chips">
             <li>OPC DA</li>
@@ -586,7 +621,7 @@ section { padding: 96px 0; }
           <a class="sq-btn" href="#contacto" data-topic="Servicios" data-i18n="cta.talk">Conversemos</a>
         </div>
         <div class="line-media"><img class="line-photo" src="img/servicios.jpg" alt="Especialista con casco y chaleco revisando su teléfono en una sala de equipos de la planta" loading="lazy" width="960" height="536"><div class="line-info">
-          <div class="line-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 5a3.5 3.5 0 0 1 0 6.5M18 14.5a6 6 0 0 1 3.5 5.5"/></svg><span data-i18n="p6.kind">Servicios especializados</span></div>
+          <div class="line-icon"><span data-i18n="p6.kind">Servicios especializados</span></div>
           <p class="line-pain" data-i18n="p6.pain">Soporte integrado, con atención remota internacional.</p>
           <ul class="chips">
             <li data-i18n="p6.c1">Auditorías de optimización y control</li>
@@ -636,9 +671,10 @@ section { padding: 96px 0; }
         <p data-i18n="tu.m1a"><b>Pulso propone el enfoque:</b> seguimiento o rechazo de perturbaciones.</p>
         <p data-i18n="tu.m1b"><b>Usted elige la agresividad:</b> agresiva, balanceada o conservadora.</p>
       </div>
-      <div class="tune-panel">
+      <div class="tune-panel is-key">
         <h3 data-i18n="tu.m2">Compatibilidad</h3>
-        <p data-i18n="tu.m2a">Trabaja con los principales sistemas de control distribuido del mercado y conoce el formato de sus bloques PID. Se conecta por OPC UA u OPC DA, o a un historiador o base de datos.</p>
+        <p class="tune-lead" data-i18n="tu.m2lead">Trabaja con los principales sistemas de control distribuido del mercado y conoce el formato de sus bloques PID.</p>
+        <p data-i18n="tu.m2a">Se conecta por OPC UA u OPC DA, o a un historiador o base de datos.</p>
         <p data-i18n="tu.m2b">Interfaz en español, inglés, portugués, francés y alemán, con permisos por rol y registro de auditoría.</p>
       </div>
     </div>
@@ -690,12 +726,12 @@ section { padding: 96px 0; }
     <div class="head-center">
       <span class="tag tag-solid" data-i18n="ap.eyebrow">Nuestro enfoque</span>
       <h2 data-i18n="ap.title">OTR Agent decide. <span class="grad">La IA lo explica.</span></h2>
-      <p data-i18n="ap.lead">Decisiones de control 24x7, explicadas y auditables, en una instalación local.</p>
+      <p data-i18n="ap.lead">Decisiones de control 24x7, explicadas y auditables.</p>
     </div>
     <div class="cards">
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14v16H5zM9 9h6M9 13h6M9 17h3"/></svg></div>
-        <div><h3 data-i18n="ap.h1">OTR Agent toma las decisiones</h3><p data-i18n="ap.t1">Decide las acciones de control 24x7 con reglas deterministas, definidas con el contexto que aporta el especialista, que se pueden revisar y auditar. La IA explica cada decisión.</p></div>
+        <div><h3 data-i18n="ap.h1">OTR Agent toma las decisiones</h3><p data-i18n="ap.t1">Decide las acciones de control 24x7 con reglas deterministas, que se pueden revisar y auditar. La IA explica cada decisión.</p></div>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></div>
@@ -703,8 +739,8 @@ section { padding: 96px 0; }
           <ul class="chips"><li data-i18n="ap.m1">Recomendar</li><li data-i18n="ap.m2">Confirmar</li><li data-i18n="ap.m3">Automático</li></ul></div>
       </div>
       <div class="card">
-        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V10l6 4V10l6 4V4h6v17z"/></svg></div>
-        <div><h3 data-i18n="ap.h3">Local, en la red de control</h3><p data-i18n="ap.t3">OTR Agent se instala en la red de control de la planta, en un equipo sin acceso a internet. El soporte remoto se conecta por VPN, pasando por las distintas capas de la arquitectura de planta.</p></div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2zM4 21a2 2 0 0 0 2 2h13v-4M9 8h6M9 12h4"/></svg></div>
+        <div><h3 data-i18n="ap.h3">El criterio del especialista, en cada turno</h3><p data-i18n="ap.t3">Las reglas se construyen con el contexto que aporta el especialista de proceso y se aplican igual en todos los turnos.</p></div>
       </div>
       <div class="card">
         <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
@@ -715,6 +751,24 @@ section { padding: 96px 0; }
       <div class="step"><div class="step-num grad">01</div><h3 data-i18n="st.h1">Diagnóstico</h3><p data-i18n="st.t1">Revisamos el proceso, los datos y los lazos de control, y acordamos dónde está el valor.</p></div>
       <div class="step"><div class="step-num grad">02</div><h3 data-i18n="st.h2">Plataforma</h3><p data-i18n="st.t2">Instalamos y configuramos el ecosistema en la planta, integrado al sistema de control.</p></div>
       <div class="step"><div class="step-num grad">03</div><h3 data-i18n="st.h3">Operación</h3><p data-i18n="st.t3">Software as a Service con soporte integrado y soporte remoto internacional.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ciberseguridad" class="secure-section">
+  <div class="wrap">
+    <div class="secure">
+      <div>
+        <span class="tag" data-i18n="se.eyebrow">Ciberseguridad</span>
+        <h2 data-i18n="se.title">La ciberseguridad es <span class="grad">nuestra prioridad.</span></h2>
+        <p class="secure-lead" data-i18n="se.lead">Cumplimos de forma consistente los altos estándares de ciberseguridad que exigen las plantas, en cada instalación.</p>
+        <svg class="secure-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l9 3.5v6.5c0 5-3.6 9-9 10-5.4-1-9-5-9-10V5.5z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>
+      </div>
+      <ul class="secure-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 8-8 9-4.8-1-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b data-i18n="se.s1h">Seguridad desde el diseño</b><span data-i18n="se.s1t">La consideramos en cada producto, desde su desarrollo hasta su operación en planta.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V4h6v17z"/></svg><div><b data-i18n="se.s2h">Dentro de su arquitectura</b><span data-i18n="se.s2t">Nuestros sistemas operan de forma local, en la red de la planta y bajo las políticas de seguridad de cada operación.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg><div><b data-i18n="se.s3h">Acceso controlado</b><span data-i18n="se.s3t">Accesos definidos por rol y acciones registradas.</span></div></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -741,6 +795,48 @@ section { padding: 96px 0; }
       <div class="place"><b>Chile<small>Santiago</small></b><span>Isidora Goyenechea 3000, Piso 23, Las Condes</span></div>
       <div class="place"><b>Chile<small>Viña del Mar</small></b><span>Limache 3421, Oficina 1210, Edificio Reitz II</span></div>
       <div class="place"><b>México<small>Torreón</small></b><span>Río Jordán 966-2, Col. Estrella, CP 27010, Coahuila</span></div>
+      <div class="place"><b>Canadá<small>West Vancouver</small></b><span>3849 Bayridge Ave, West Vancouver, BC</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="wrap">
+    <div class="head-left">
+      <div>
+        <span class="tag">Blog</span>
+        <h2 data-i18n="bl.title">Ideas para operar <span class="grad">mejor la planta.</span></h2>
+      </div>
+      <a class="pill pill-light" href="blog/index.html" data-i18n="bl.all">Ver todos los artículos</a>
+    </div>
+    <div class="post-grid">
+      <a class="post-card" href="blog/agente-virtual-lenguaje-claro.html">
+        <img src="img/blog-agente.jpg" alt="Dos trabajadores de una planta concentradora revisan juntos una tableta, con líneas de luz que la conectan a una válvula y a un molino" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="tag" data-i18n="bl.g1">Agente virtual</span>
+          <h3 data-i18n="bl.h1">Un mismo idioma para toda la planta: el agente virtual en acción</h3>
+          <p data-i18n="bl.t1">Operación, instrumentación y mantenimiento no siempre se entienden. El agente virtual usa IA para explicar los cálculos complejos en lenguaje claro, sin alucinaciones.</p>
+          <span class="post-more" data-i18n="bl.more">Leer artículo →</span>
+        </div>
+      </a>
+      <a class="post-card" href="blog/saturacion-comunicaciones-sistema-de-control.html">
+        <img src="img/blog-saturacion.jpg" alt="Sala de gabinetes de control donde muchas líneas de datos enredadas se unen en un equipo y siguen como una sola línea ordenada hacia el controlador" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="tag" data-i18n="bl.g2">Comunicaciones industriales</span>
+          <h3 data-i18n="bl.h2">Saturación de comunicaciones: cuando las aplicaciones sobrecargan al sistema de control</h3>
+          <p data-i18n="bl.t2">Cada aplicación cliente parece razonable por separado. La suma puede saturar los canales hacia los controladores. Cómo limitarla con OPC Nexus.</p>
+          <span class="post-more" data-i18n="bl.more">Leer artículo →</span>
+        </div>
+      </a>
+      <a class="post-card" href="blog/fantasmas-de-comunicacion-opc.html">
+        <img src="img/blog-fantasmas.jpg" alt="Sala de gabinetes de control donde unas pocas líneas de datos sólidas y muchas líneas tenues, sin origen, llegan al mismo controlador" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="tag" data-i18n="bl.g3">Comunicaciones industriales</span>
+          <h3 data-i18n="bl.h3">Fantasmas de comunicación: las conexiones OPC que nadie cerró</h3>
+          <p data-i18n="bl.t3">Clientes que se desconectan sin liberar sus comunicaciones dejan carga que se acumula en silencio, hasta obligar a reiniciar los servicios del DCS.</p>
+          <span class="post-more" data-i18n="bl.more">Leer artículo →</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -794,7 +890,7 @@ section { padding: 96px 0; }
       </div>
       <div>
         <h3 data-i18n="ft.h2">Empresa</h3>
-        <ul><li><a href="#enfoque" data-i18n="nav.approach">Enfoque</a></li><li><a href="#servicios" data-i18n="p6.name">Servicios</a></li><li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+        <ul><li><a href="#enfoque" data-i18n="nav.approach">Enfoque</a></li><li><a href="#ciberseguridad" data-i18n="nav.security">Ciberseguridad</a></li><li><a href="#servicios" data-i18n="p6.name">Servicios</a></li><li><a href="#nosotros" data-i18n="nav.about">Nosotros</a></li><li><a href="blog/index.html">Blog</a></li><li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
       </div>
     </div>
     <p class="footer-note">© 2026 Kapptek OPT</p>
@@ -854,7 +950,7 @@ section { padding: 96px 0; }
     "tu.h4": "Tune", "tu.t4": "It takes the recommended tuning to the control system and tunes the loop automatically.",
     "tb.h1": "No plant tests", "tb.t1": "It uses the normal changes of the operation. There is no need to disturb the process.", "tb.h2": "No manual calculations", "tb.t2": "Pulso does the model, the tuning and the unit conversions.", "tb.h3": "Always on", "tb.t3": "It reviews the loops on a schedule, not in a one-off campaign.", "tb.h4": "Backed tuning", "tb.t4": "Every proposal is simulated and must meet a robustness margin.", "tu.how": "How it works",
     "tu.m1": "Pulso proposes, you adjust", "tu.m1a": "<b>Pulso proposes the focus:</b> setpoint tracking or disturbance rejection.", "tu.m1b": "<b>You choose the aggressiveness:</b> aggressive, balanced or conservative.",
-    "tu.m2": "Compatibility", "tu.m2a": "It works with the leading distributed control systems on the market and knows the format of their PID blocks. It connects through OPC UA or OPC DA, or to a historian or database.", "tu.m2b": "Interface in Spanish, English, Portuguese, French and German, with role-based permissions and an audit log.",
+    "tu.m2": "Compatibility", "tu.m2lead": "It works with the leading distributed control systems on the market and knows the format of their PID blocks.", "tu.m2a": "It connects through OPC UA or OPC DA, or to a historian or database.", "tu.m2b": "Interface in Spanish, English, Portuguese, French and German, with role-based permissions and an audit log.",
     "tu.result": "The result: loops assessed continuously and tuned automatically, with the model and the rule behind every constant.", "tu.cta": "Request a Pulso demo",
     "en.eyebrow": "Free download", "en.lead": "The free application that diagnoses, fixes and verifies OPC communication between your computers and the plant control system.",
     "en.h1": "Diagnose and fix", "en.t1": "It checks everything OPC Classic (DCOM) and OPC UA communication needs: security, accounts and permissions, firewall, network, services, time, ports and certificates. Each finding explains how to repair it, with reversible automatic fixes where possible.",
@@ -864,11 +960,21 @@ section { padding: 96px 0; }
     "dl.title": "Download OPC Enlace", "dl.lead": "Fill in your details to enable the download.", "dl.role": "Job title", "dl.country": "Country", "dl.email": "Corporate email",
     "dl.note": "Only corporate email addresses are accepted. Gmail, Outlook, Yahoo and other free services are not allowed.",
     "dl.send": "Enable download", "dl.ready": "Thank you. Your download is ready.", "dl.link": "Download for Windows",
-    "ap.eyebrow": "Our approach", "ap.title": "OTR Agent decides. <span class=\"grad\">AI explains it.</span>", "ap.lead": "Control decisions 24x7, explained and auditable, in a local installation.",
-    "ap.h1": "OTR Agent makes the decisions", "ap.t1": "It decides control actions 24x7 with deterministic rules, defined with the context provided by the specialist, that can be reviewed and audited. AI explains each decision.",
+    "nav.security": "Cybersecurity",
+    "bl.title": "Ideas to run <span class=\"grad\">the plant better.</span>", "bl.all": "See all articles", "bl.more": "Read article →",
+    "bl.g1": "Virtual agent", "bl.h1": "One language for the whole plant: the virtual agent in action", "bl.t1": "Operations, instrumentation and maintenance do not always understand each other. The virtual agent uses AI to explain complex calculations in plain language, without hallucinations.",
+    "bl.g2": "Industrial communications", "bl.h2": "Communication saturation: when applications overload the control system", "bl.t2": "Each client application looks reasonable on its own. The sum can saturate the channels to the controllers. How to limit it with OPC Nexus.",
+    "bl.g3": "Industrial communications", "bl.h3": "Communication ghosts: the OPC connections nobody closed", "bl.t3": "Clients that disconnect without releasing their communications leave load that builds up silently, until the DCS services have to be restarted.",
+    "se.eyebrow": "Cybersecurity", "se.title": "Cybersecurity is <span class=\"grad\">our priority.</span>",
+    "se.lead": "We consistently meet the high cybersecurity standards that plants require, at every installation.",
+    "se.s1h": "Security by design", "se.s1t": "We consider it in every product, from development to operation in the plant.",
+    "se.s2h": "Within your architecture", "se.s2t": "Our systems run locally, on the plant network and under the security policies of each operation.",
+    "se.s3h": "Controlled access", "se.s3t": "Access defined by role and actions logged.",
+    "ap.eyebrow": "Our approach", "ap.title": "OTR Agent decides. <span class=\"grad\">AI explains it.</span>", "ap.lead": "Control decisions 24x7, explained and auditable.",
+    "ap.h1": "OTR Agent makes the decisions", "ap.t1": "It decides control actions 24x7 with deterministic rules that can be reviewed and audited. AI explains each decision.",
     "ap.h2": "The operation sets the mode", "ap.t2": "Each strategy runs in the mode the operation chooses.",
     "ap.m1": "Recommend", "ap.m2": "Confirm", "ap.m3": "Automatic",
-    "ap.h3": "Local, on the control network", "ap.t3": "OTR Agent is installed on the plant control network, on a computer with no internet access. Remote support connects through a VPN, passing through the layers of the plant architecture.",
+    "ap.h3": "The specialist's judgment, on every shift", "ap.t3": "The rules are built with the context provided by the process specialist and are applied the same way on every shift.",
     "ap.h4": "Every decision is traced", "ap.t4": "Each action is logged with its reason and can be audited end to end with the virtual agent.",
     "st.h1": "Diagnosis", "st.t1": "We review the process, the data and the control loops, and agree on where the value is.",
     "st.h2": "Platform", "st.t2": "We install and configure the ecosystem in the plant, integrated with the control system.",
@@ -969,7 +1075,7 @@ section { padding: 96px 0; }
   // ---------- Reveal on scroll (content stays visible without it) ----------
   var canAnimate = "IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (canAnimate) {
-    var targets = document.querySelectorAll(".head-center, .head-left, .compare-card, .line, .card, .step, .tune-step, .tune-panel, .tune-benefits, .enlace-grid > *, .about > *, .contact, .band p");
+    var targets = document.querySelectorAll(".head-center, .head-left, .compare-card, .line, .card, .step, .tune-step, .tune-panel, .tune-benefits, .enlace-grid > *, .secure, .about > *, .post-card, .contact, .band p");
     var viewportHeight = window.innerHeight;
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {

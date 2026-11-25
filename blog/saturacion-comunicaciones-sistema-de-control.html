@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es" data-title-es="Saturación de comunicaciones: cuando las aplicaciones sobrecargan al sistema de control | Kapptek" data-title-en="Communication saturation: when applications overload the control system | Kapptek">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saturación de comunicaciones: cuando las aplicaciones sobrecargan al sistema de control | Kapptek</title>
+<meta name="description" content="Cada aplicación cliente parece razonable por separado. La suma puede saturar los canales hacia los controladores. Cómo limitarla con OPC Nexus.">
+<link rel="canonical" href="https://www.kapptek.com/blog/saturacion-comunicaciones-sistema-de-control.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26"></a>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a href="../index.html#soluciones"><span data-l="es">Soluciones</span><span data-l="en">Solutions</span></a>
+      <a href="../index.html#enfoque"><span data-l="es">Enfoque</span><span data-l="en">Approach</span></a>
+      <a href="../index.html#ciberseguridad"><span data-l="es">Ciberseguridad</span><span data-l="en">Cybersecurity</span></a>
+      <a href="../index.html#nosotros"><span data-l="es">Nosotros</span><span data-l="en">About us</span></a>
+      <a href="index.html" aria-current="page">Blog</a>
+      <a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+    </nav>
+    <div class="header-tools">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill pill-orange pill-small header-cta" href="../index.html#contacto"><span data-l="es">Solicitar demostración</span><span data-l="en">Request a demo</span></a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav"><span data-l="es">Menú</span><span data-l="en">Menu</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<article class="post">
+  <div class="wrap post-wrap">
+    <a class="post-back" href="index.html">← <span data-l="es">Volver al blog</span><span data-l="en">Back to the blog</span></a>
+    <span class="post-tag"><span data-l="es">Comunicaciones industriales</span><span data-l="en">Industrial communications</span></span>
+    <h1><span data-l="es">Saturación de comunicaciones: cuando las aplicaciones sobrecargan al sistema de control</span><span data-l="en">Communication saturation: when applications overload the control system</span></h1>
+    <p class="post-meta">Kapptek · <span data-l="es">25 de noviembre de 2026</span><span data-l="en">November 25, 2026</span> · <span data-l="es">7 min de lectura</span><span data-l="en">7 min read</span></p>
+  </div>
+  <div class="wrap post-figure"><img src="../img/blog-saturacion.jpg" alt="Sala de gabinetes de control donde muchas líneas de datos enredadas se unen en un equipo y siguen como una sola línea ordenada hacia el controlador" width="1200" height="675"></div>
+  <div class="wrap post-wrap post-body">
+    <div data-l="es">
+<p class="post-lead">El sistema de control de una planta ya no conversa solo con sus estaciones de operación. Historiadores, control avanzado, sistemas de reportes, analítica y aplicaciones de terceros le piden datos y le escriben consignas todo el día. Cada una de esas aplicaciones es un cliente más, y todas comparten los mismos canales de comunicación hacia los controladores.</p>
+<h2>Un recurso limitado y compartido</h2>
+<p>Los controladores donde está configurada la lógica de control tienen una capacidad finita para atender comunicaciones. Cada lectura y cada escritura que llega desde una aplicación cliente ocupa parte de esa capacidad, y lo hace en el mismo equipo que debe ejecutar el control del proceso.</p>
+<p>Las escrituras pesan más que las lecturas: cada una debe ser recibida, validada y aplicada. Una aplicación que escribe muchas consignas por segundo, o que las envía todas de golpe, exige al canal mucho más que una que solo lee.</p>
+<h2>Por qué nadie lo ve venir</h2>
+<ul>
+<li><b>Cada cliente es razonable por separado.</b> El problema es la suma, y nadie es dueño de la suma.</li>
+<li><b>Las aplicaciones no se conocen entre sí.</b> Cada proveedor configura su cliente como si fuera el único conectado.</li>
+<li><b>La carga crece de a poco.</b> Se agregan variables, se acortan los tiempos de actualización, se instala una aplicación nueva. Ningún cambio por sí solo parece importante.</li>
+<li><b>Aparece en el peor momento.</b> Durante una perturbación del proceso, todas las aplicaciones reaccionan al mismo tiempo y escriben a la vez.</li>
+</ul>
+<h2>Cómo se manifiesta</h2>
+<ol>
+<li>Los datos llegan con retraso o con mala calidad a las aplicaciones.</li>
+<li>Las escrituras fallan de forma intermitente o tardan en aplicarse.</li>
+<li>Las pantallas de operación se actualizan con lentitud.</li>
+<li>En el extremo, las comunicaciones del sistema de control colapsan y hay que reiniciar servicios, con efecto directo en la operación.</li>
+</ol>
+<h2>Qué se necesita controlar</h2>
+<p>Proteger al sistema de control no consiste en desconectar aplicaciones, sino en administrar lo que le llega. En la práctica eso significa:</p>
+<ul>
+<li><b>Limitar las escrituras por segundo</b>, para que ningún cliente pueda exceder lo que el canal soporta.</li>
+<li><b>Agrupar en lotes</b> lo que se lee y lo que se escribe, en lugar de enviar cada valor por separado.</li>
+<li><b>Escribir solo cuando el valor cambia</b>, y no repetir la misma consigna en cada ciclo.</li>
+<li><b>Fijar tiempos de actualización acordes al proceso</b>, no los más rápidos que permita la aplicación.</li>
+<li><b>Conocer la carga total</b>, y no solo la de cada cliente.</li>
+</ul>
+<p>Hacerlo aplicación por aplicación, con cada proveedor, es lento y frágil: basta un cliente mal configurado para volver al punto de partida.</p>
+<h2>El papel de OPC Nexus</h2>
+<p>OPC Nexus se interpone entre los clientes OPC de la planta y el sistema de control. Ordena las escrituras por prioridad, las agrupa en lotes y limita su ritmo para que el servidor del DCS no se sature. El sistema de control deja de atender a muchas aplicaciones con comportamientos distintos y pasa a recibir un flujo único, ordenado y predecible.</p>
+<p>Entre lo que piden los clientes y lo que llega al sistema de control actúa un motor de gestión de escrituras que combina varios mecanismos:</p>
+<ul>
+<li><b>Límite de escrituras por segundo.</b> Cada canal hacia el sistema de control tiene un tope configurable que no se excede. La demanda que lo supera espera su turno y se escribe al ritmo permitido.</li>
+<li><b>Lotes.</b> Muchas escrituras viajan en una sola llamada, lo que aprovecha la capacidad del servidor con menos comunicaciones.</li>
+<li><b>Prioridades.</b> Las escrituras se atienden por nivel de prioridad, de modo que un comando del operador no queda esperando detrás de miles de valores informativos.</li>
+<li><b>Banda muerta.</b> Los cambios menores a un umbral definido por variable no se escriben, para no gastar capacidad en variaciones insignificantes.</li>
+<li><b>Caducidad.</b> Una consigna que quedó obsoleta mientras esperaba, por ejemplo durante una caída de comunicación, se descarta en vez de escribirse tarde.</li>
+<li><b>Orden garantizado.</b> Los valores de cada variable se conservan y se escriben en secuencia: una rampa llega completa. Si el servidor está caído o saturado por mucho tiempo, se conserva el valor vigente y no una historia obsoleta.</li>
+<li><b>Cortacircuitos.</b> Si el servidor deja de responder, OPC Nexus deja de insistir y reintenta de forma gradual, en lugar de seguir cargando a un sistema que ya está en problemas.</li>
+</ul>
+<p>Cada canal se regula por separado, por lo que un problema en uno no afecta a los demás.</p>
+<h2>Ver la suma, por fin</h2>
+<p>OPC Nexus también hace visible lo que antes nadie veía. Muestra la demanda de cada sistema cliente junto a lo que efectivamente sale hacia el sistema de control, qué fracción del límite se está usando y quién consume más. La diferencia entre ambas cifras es la presión que el puente está amortiguando.</p>
+<p>El resultado es que se pueden sumar aplicaciones a la planta sin poner en riesgo la estabilidad del sistema de control.</p>
+</div>
+    <div data-l="en">
+<p class="post-lead">A plant's control system no longer talks only to its operator stations. Historians, advanced control, reporting systems, analytics and third-party applications request data and write setpoints to it all day. Each of those applications is one more client, and they all share the same communication channels to the controllers.</p>
+<h2>A limited, shared resource</h2>
+<p>The controllers where the control logic is configured have a finite capacity to handle communications. Every read and every write arriving from a client application takes up part of that capacity, on the same equipment that must execute process control.</p>
+<p>Writes weigh more than reads: each one has to be received, validated and applied. An application that writes many setpoints per second, or sends them all at once, demands much more from the channel than one that only reads.</p>
+<h2>Why nobody sees it coming</h2>
+<ul>
+<li><b>Each client is reasonable on its own.</b> The problem is the sum, and nobody owns the sum.</li>
+<li><b>Applications do not know about each other.</b> Each vendor configures its client as if it were the only one connected.</li>
+<li><b>The load grows little by little.</b> Variables are added, update times are shortened, a new application is installed. No single change seems important.</li>
+<li><b>It shows up at the worst moment.</b> During a process upset, every application reacts at the same time and writes at once.</li>
+</ul>
+<h2>How it shows</h2>
+<ol>
+<li>Data reaches the applications late or with bad quality.</li>
+<li>Writes fail intermittently or take a long time to be applied.</li>
+<li>Operator displays update slowly.</li>
+<li>At the extreme, the control system's communications collapse and services must be restarted, with a direct effect on operations.</li>
+</ol>
+<h2>What needs to be controlled</h2>
+<p>Protecting the control system is not about disconnecting applications, but about managing what reaches it. In practice that means:</p>
+<ul>
+<li><b>Limiting writes per second</b>, so that no client can exceed what the channel supports.</li>
+<li><b>Grouping into batches</b> what is read and what is written, instead of sending each value separately.</li>
+<li><b>Writing only when the value changes</b>, rather than repeating the same setpoint on every cycle.</li>
+<li><b>Setting update times that match the process</b>, not the fastest ones the application allows.</li>
+<li><b>Knowing the total load</b>, not just the load of each client.</li>
+</ul>
+<p>Doing this application by application, with each vendor, is slow and fragile: a single poorly configured client is enough to be back at the starting point.</p>
+<h2>The role of OPC Nexus</h2>
+<p>OPC Nexus sits between the plant's OPC clients and the control system. It orders writes by priority, groups them into batches and limits their rate so that the DCS server is not saturated. The control system stops serving many applications with different behaviors and receives a single, orderly and predictable flow.</p>
+<p>Between what clients request and what reaches the control system, a write management engine combines several mechanisms:</p>
+<ul>
+<li><b>Writes-per-second limit.</b> Each channel to the control system has a configurable cap that is never exceeded. Demand above it waits its turn and is written at the permitted rate.</li>
+<li><b>Batches.</b> Many writes travel in a single call, which uses the server's capacity with fewer communications.</li>
+<li><b>Priorities.</b> Writes are served by priority level, so an operator command does not wait behind thousands of informational values.</li>
+<li><b>Deadband.</b> Changes smaller than a threshold defined per variable are not written, so capacity is not spent on insignificant variations.</li>
+<li><b>Expiry.</b> A setpoint that became obsolete while waiting, for example during a communication outage, is discarded instead of being written late.</li>
+<li><b>Guaranteed order.</b> The values of each variable are kept and written in sequence: a ramp arrives complete. If the server is down or saturated for a long time, the current value is kept rather than an obsolete history.</li>
+<li><b>Circuit breaker.</b> If the server stops responding, OPC Nexus stops insisting and retries gradually, instead of continuing to load a system that is already in trouble.</li>
+</ul>
+<p>Each channel is regulated separately, so a problem in one does not affect the others.</p>
+<h2>Seeing the sum, at last</h2>
+<p>OPC Nexus also makes visible what nobody could see before. It shows the demand of each client system next to what actually goes out to the control system, what fraction of the limit is in use and who consumes the most. The difference between the two figures is the pressure the bridge is absorbing.</p>
+<p>The result is that applications can be added to the plant without putting the stability of the control system at risk.</p>
+</div>
+    <aside class="post-cta">
+      <div>
+        <h2><span data-l="es">Un solo puente, ordenado, hacia el sistema de control</span><span data-l="en">A single, orderly bridge to the control system</span></h2>
+        <p><span data-l="es">OPC Nexus une a los clientes OPC DA y UA en un solo puente y limita lo que llega al sistema de control.</span><span data-l="en">OPC Nexus joins OPC DA and UA clients in a single bridge and limits what reaches the control system.</span></p>
+      </div>
+      <a class="pill pill-orange" href="../index.html#opc-nexus"><span data-l="es">Conocer OPC Nexus</span><span data-l="en">Discover OPC Nexus</span></a>
+    </aside>
+  </div>
+</article>
+<section class="blog-list more">
+  <div class="wrap">
+    <h2 class="more-title"><span data-l="es">Más artículos</span><span data-l="en">More articles</span></h2>
+    <div class="post-grid two">
+      <a class="post-card" href="fantasmas-de-comunicacion-opc.html">
+        <img src="../img/blog-fantasmas.jpg" alt="Sala de gabinetes de control donde unas pocas líneas de datos sólidas y muchas líneas tenues, sin origen, llegan al mismo controlador" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Comunicaciones industriales</span><span data-l="en">Industrial communications</span></span>
+          <h2><span data-l="es">Fantasmas de comunicación: las conexiones OPC que nadie cerró</span><span data-l="en">Communication ghosts: the OPC connections nobody closed</span></h2>
+          <p><span data-l="es">Clientes que se desconectan sin liberar sus comunicaciones dejan carga que se acumula en silencio, hasta obligar a reiniciar los servicios del DCS.</span><span data-l="en">Clients that disconnect without releasing their communications leave load that builds up silently, until the DCS services have to be restarted.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+      <a class="post-card" href="lazo-de-control-mal-sintonizado.html">
+        <img src="../img/blog-lazo.jpg" alt="Tubería de proceso con un transmisor y una válvula de control, y una señal verde que oscila sin estabilizarse alrededor de su valor deseado" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Control de procesos</span><span data-l="en">Process control</span></span>
+          <h2><span data-l="es">Cómo saber si un lazo de control está mal sintonizado</span><span data-l="en">How to tell if a control loop is poorly tuned</span></h2>
+          <p><span data-l="es">Seis señales que se ven desde la sala de control, y por qué conviene diagnosticar antes de cambiar parámetros.</span><span data-l="en">Six signs you can see from the control room, and why it pays to diagnose before changing parameters.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26" loading="lazy"></a>
+    <p><span data-l="es">Optimización, IA y visión artificial para el procesamiento de minerales.</span><span data-l="en">Optimization, AI and machine vision for mineral processing.</span></p>
+    <p class="footer-links"><a href="../index.html"><span data-l="es">Inicio</span><span data-l="en">Home</span></a><a href="index.html">Blog</a><a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a></p>
+  </div>
+  <div class="wrap"><p class="footer-note">© 2026 Kapptek OPT</p></div>
+</footer>
+<script src="blog.js"></script>
+</body>
+</html>

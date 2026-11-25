@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-title-es="Cómo saber si un lazo de control está mal sintonizado | Kapptek" data-title-en="How to tell if a control loop is poorly tuned | Kapptek">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo saber si un lazo de control está mal sintonizado | Kapptek</title>
+<meta name="description" content="Seis señales que se ven desde la sala de control, y por qué conviene diagnosticar antes de cambiar parámetros.">
+<link rel="canonical" href="https://www.kapptek.com/blog/lazo-de-control-mal-sintonizado.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="blog.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26"></a>
+    <nav class="nav" id="site-nav" aria-label="Principal">
+      <a href="../index.html#soluciones"><span data-l="es">Soluciones</span><span data-l="en">Solutions</span></a>
+      <a href="../index.html#enfoque"><span data-l="es">Enfoque</span><span data-l="en">Approach</span></a>
+      <a href="../index.html#ciberseguridad"><span data-l="es">Ciberseguridad</span><span data-l="en">Cybersecurity</span></a>
+      <a href="../index.html#nosotros"><span data-l="es">Nosotros</span><span data-l="en">About us</span></a>
+      <a href="index.html" aria-current="page">Blog</a>
+      <a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a>
+    </nav>
+    <div class="header-tools">
+      <div class="lang" role="group" aria-label="Idioma / Language">
+        <button type="button" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <a class="pill pill-orange pill-small header-cta" href="../index.html#contacto"><span data-l="es">Solicitar demostración</span><span data-l="en">Request a demo</span></a>
+      <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="site-nav"><span data-l="es">Menú</span><span data-l="en">Menu</span></button>
+    </div>
+  </div>
+</header>
+<main>
+<article class="post">
+  <div class="wrap post-wrap">
+    <a class="post-back" href="index.html">← <span data-l="es">Volver al blog</span><span data-l="en">Back to the blog</span></a>
+    <span class="post-tag"><span data-l="es">Control de procesos</span><span data-l="en">Process control</span></span>
+    <h1><span data-l="es">Cómo saber si un lazo de control está mal sintonizado</span><span data-l="en">How to tell if a control loop is poorly tuned</span></h1>
+    <p class="post-meta">Kapptek · <span data-l="es">25 de noviembre de 2026</span><span data-l="en">November 25, 2026</span> · <span data-l="es">5 min de lectura</span><span data-l="en">5 min read</span></p>
+  </div>
+  <div class="wrap post-figure"><img src="../img/blog-lazo.jpg" alt="Tubería de proceso con un transmisor y una válvula de control, y una señal verde que oscila sin estabilizarse alrededor de su valor deseado" width="1200" height="675"></div>
+  <div class="wrap post-wrap post-body">
+    <div data-l="es">
+<p class="post-lead">Una planta de procesamiento de minerales tiene cientos de lazos de control. La mayoría se sintonizó en la puesta en marcha y no se volvió a revisar, aunque el mineral, los equipos y las condiciones de operación cambiaron. El resultado rara vez es una falla visible: es una pérdida silenciosa de estabilidad.</p>
+<p>Estas son las señales más comunes de que un lazo necesita atención, y todas se pueden observar desde la sala de control.</p>
+<h2>Seis señales de un lazo con problemas</h2>
+<ol>
+<li><b>Oscila de forma sostenida.</b> La variable de proceso sube y baja alrededor de la consigna sin estabilizarse, aun cuando el proceso está tranquilo.</li>
+<li><b>Responde con lentitud.</b> Después de un cambio de consigna o de una perturbación, tarda demasiado en volver al valor deseado.</li>
+<li><b>Pasa mucho tiempo en manual.</b> Cuando los operadores sacan un lazo de automático una y otra vez, es porque no confían en él. Es una de las señales más claras.</li>
+<li><b>La salida vive saturada.</b> La válvula o el variador trabajan en 0 % o 100 % gran parte del tiempo, y el controlador ya no tiene margen para actuar.</li>
+<li><b>Reacciona al ruido.</b> La salida se mueve sin descanso siguiendo el ruido de la medición, lo que desgasta el actuador sin mejorar el control.</li>
+<li><b>Los operadores lo compensan.</b> Se ajustan consignas de otros lazos o se opera con holgura para absorber la inestabilidad de uno.</li>
+</ol>
+<h2>No siempre es la sintonía</h2>
+<p>Un lazo que oscila no necesariamente tiene malos parámetros. La causa puede estar en una válvula que se pega, en un instrumento mal calibrado, en un actuador sobredimensionado o en la interacción con otro lazo. Cambiar la sintonía en esos casos solo esconde el problema por un tiempo.</p>
+<p>Por eso el orden importa: primero se evalúa el desempeño, después se diagnostica la causa y recién entonces se decide si corresponde sintonizar o reparar.</p>
+<h2>El problema de la escala</h2>
+<p>Revisar un lazo a mano es posible. Revisar todos los de la planta, de forma periódica, no lo es para un equipo que además debe atender la operación diaria. En la práctica se atienden los lazos que más molestan, que no siempre son los que más afectan el resultado del proceso.</p>
+<p>Lo que se necesita es una evaluación continua de todos los lazos y una lista priorizada por impacto, para dedicar el tiempo de los especialistas a lo que más importa.</p>
+<h2>Cómo lo aborda Pulso</h2>
+<p>Pulso es la herramienta de Kapptek para este trabajo. Evalúa el desempeño de los lazos de control, diagnostica la causa probable de cada problema y prioriza dónde actuar. Cuando lo que corresponde es sintonizar, calcula los nuevos parámetros a partir de los datos de la operación normal, sin pruebas en planta, y sintoniza automáticamente.</p>
+<p>Pulso propone el enfoque de sintonía y el usuario solo define qué tan agresiva quiere la respuesta. Funciona con los principales sistemas de control distribuido del mercado.</p>
+</div>
+    <div data-l="en">
+<p class="post-lead">A mineral processing plant has hundreds of control loops. Most were tuned at commissioning and never reviewed again, even though the ore, the equipment and the operating conditions have changed. The result is rarely a visible failure: it is a silent loss of stability.</p>
+<p>These are the most common signs that a loop needs attention, and all of them can be seen from the control room.</p>
+<h2>Six signs of a troubled loop</h2>
+<ol>
+<li><b>It oscillates continuously.</b> The process variable swings around the setpoint without settling, even when the process is calm.</li>
+<li><b>It responds slowly.</b> After a setpoint change or a disturbance, it takes too long to return to the desired value.</li>
+<li><b>It spends a lot of time in manual.</b> When operators keep taking a loop out of automatic, it is because they do not trust it. This is one of the clearest signs.</li>
+<li><b>The output stays saturated.</b> The valve or drive sits at 0% or 100% much of the time, and the controller has no room left to act.</li>
+<li><b>It reacts to noise.</b> The output moves constantly, following measurement noise, which wears the actuator without improving control.</li>
+<li><b>Operators compensate for it.</b> Setpoints of other loops are adjusted, or the plant is run with extra margin, to absorb the instability of one loop.</li>
+</ol>
+<h2>It is not always the tuning</h2>
+<p>A loop that oscillates does not necessarily have bad parameters. The cause may be a sticking valve, a poorly calibrated instrument, an oversized actuator or the interaction with another loop. Changing the tuning in those cases only hides the problem for a while.</p>
+<p>That is why the order matters: first assess performance, then diagnose the cause, and only then decide whether to tune or to repair.</p>
+<h2>The problem of scale</h2>
+<p>Reviewing one loop by hand is feasible. Reviewing every loop in the plant, periodically, is not feasible for a team that also has to support daily operation. In practice, the loops that get attention are the ones that annoy the most, which are not always the ones that affect process results the most.</p>
+<p>What is needed is a continuous assessment of every loop and a list prioritized by impact, so that specialists spend their time where it matters most.</p>
+<h2>How Pulso approaches it</h2>
+<p>Pulso is Kapptek's tool for this job. It assesses control loop performance, diagnoses the probable cause of each problem and prioritizes where to act. When tuning is the right answer, it calculates the new parameters from normal operating data, with no plant tests, and tunes automatically.</p>
+<p>Pulso proposes the tuning approach and the user only defines how aggressive the response should be. It works with the leading distributed control systems on the market.</p>
+</div>
+    <aside class="post-cta">
+      <div>
+        <h2><span data-l="es">Evalúe y sintonice sus lazos con Pulso</span><span data-l="en">Assess and tune your loops with Pulso</span></h2>
+        <p><span data-l="es">Pulso evalúa, diagnostica y sintoniza automáticamente los lazos de control, sin pruebas en planta.</span><span data-l="en">Pulso assesses, diagnoses and automatically tunes control loops, with no plant tests.</span></p>
+      </div>
+      <a class="pill pill-orange" href="../index.html#sintonia"><span data-l="es">Conocer Pulso</span><span data-l="en">Discover Pulso</span></a>
+    </aside>
+  </div>
+</article>
+<section class="blog-list more">
+  <div class="wrap">
+    <h2 class="more-title"><span data-l="es">Más artículos</span><span data-l="en">More articles</span></h2>
+    <div class="post-grid two">
+      <a class="post-card" href="errores-opc-dcom.html">
+        <img src="../img/blog-dcom.jpg" alt="Dos gabinetes con equipos separados por una barrera tenue: varias líneas de datos se detienen a medio camino y solo una logra cruzar" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Comunicaciones industriales</span><span data-l="en">Industrial communications</span></span>
+          <h2><span data-l="es">Errores de comunicación OPC con DCOM: por qué son tan difíciles de diagnosticar</span><span data-l="en">OPC communication errors with DCOM: why they are so hard to diagnose</span></h2>
+          <p><span data-l="es">La configuración está repartida en dos equipos y los mensajes de error dicen poco. Qué revisar y cómo OPC Enlace facilita las integraciones.</span><span data-l="en">The configuration is spread across two machines and the error messages say little. What to check, and how OPC Enlace makes integrations easier.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+      <a class="post-card" href="variabilidad-entre-turnos.html">
+        <img src="../img/hero-2.jpg" alt="Sala de control de una planta concentradora con operadores frente a sus pantallas" loading="lazy" width="1200" height="675">
+        <div class="post-card-body">
+          <span class="post-tag"><span data-l="es">Operación</span><span data-l="en">Operations</span></span>
+          <h2><span data-l="es">Por qué cada turno opera la planta de forma distinta</span><span data-l="en">Why every shift runs the plant differently</span></h2>
+          <p><span data-l="es">La misma planta, el mismo mineral y resultados distintos según quién esté en la sala de control. De dónde viene esa variabilidad y cómo reducirla.</span><span data-l="en">The same plant, the same ore and different results depending on who is in the control room. Where that variability comes from and how to reduce it.</span></p>
+          <span class="post-more"><span data-l="es">Leer artículo</span><span data-l="en">Read article</span> →</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <a class="brand" href="../index.html" aria-label="Kapptek"><img class="brand-logo" src="../img/logo.png" alt="Kapptek · optimization beyond" width="119" height="26" loading="lazy"></a>
+    <p><span data-l="es">Optimización, IA y visión artificial para el procesamiento de minerales.</span><span data-l="en">Optimization, AI and machine vision for mineral processing.</span></p>
+    <p class="footer-links"><a href="../index.html"><span data-l="es">Inicio</span><span data-l="en">Home</span></a><a href="index.html">Blog</a><a href="../index.html#contacto"><span data-l="es">Contacto</span><span data-l="en">Contact</span></a></p>
+  </div>
+  <div class="wrap"><p class="footer-note">© 2026 Kapptek OPT</p></div>
+</footer>
+<script src="blog.js"></script>
+</body>
+</html>
