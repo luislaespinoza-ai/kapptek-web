@@ -274,7 +274,7 @@ section { padding: 96px 0; }
 .dl-note { grid-column: 1 / -1; font-size: 13px; color: var(--slate); }
 .dl-ready { display: none; margin-top: 18px; padding: 18px; border-radius: 16px; background: var(--mist); border: 1px solid var(--line); }
 .dl-ready.is-on { display: block; }
-.dl-ready p { font-size: 15px; margin-bottom: 12px; }
+.dl-ready p { font-size: 15px; }
 
 /* ---------- Cybersecurity ---------- */
 .secure-section { padding-top: 0; }
@@ -703,22 +703,22 @@ section { padding: 96px 0; }
     </div>
     <div class="dl-card">
       <h3 data-i18n="dl.title">Descargar OPC Enlace</h3>
-      <p data-i18n="dl.lead">Complete sus datos para habilitar la descarga.</p>
+      <p data-i18n="dl.lead">Complete sus datos y le enviaremos el enlace de descarga a su correo corporativo.</p>
       <form class="dl-form" id="download-form" novalidate>
-        <div class="field"><label for="d-name" data-i18n="fm.name">Nombre</label><input id="d-name" name="name" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="d-first" data-i18n="fm.name">Nombre</label><input id="d-first" name="firstname" type="text" autocomplete="given-name" required></div>
+        <div class="field"><label for="d-last" data-i18n="dl.last">Apellido</label><input id="d-last" name="lastname" type="text" autocomplete="family-name" required></div>
         <div class="field"><label for="d-role" data-i18n="dl.role">Cargo</label><input id="d-role" name="role" type="text" autocomplete="organization-title" required></div>
         <div class="field"><label for="d-company" data-i18n="fm.company">Empresa</label><input id="d-company" name="company" type="text" autocomplete="organization" required></div>
-        <div class="field"><label for="d-country" data-i18n="dl.country">País</label><input id="d-country" name="country" type="text" autocomplete="country-name" required></div>
+        <div class="field full"><label for="d-country" data-i18n="dl.country">País</label><input id="d-country" name="country" type="text" autocomplete="country-name" required></div>
         <div class="field full"><label for="d-email" data-i18n="dl.email">Correo corporativo</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
         <p class="dl-note" data-i18n="dl.note">Solo se aceptan correos corporativos. No se admiten cuentas de Gmail, Outlook, Yahoo ni otros servicios gratuitos.</p>
         <div class="form-foot">
-          <button type="submit" class="pill pill-orange" data-i18n="dl.send">Habilitar descarga</button>
+          <button type="submit" class="pill pill-orange" data-i18n="dl.send">Solicitar descarga</button>
           <p class="form-status" id="download-status" role="status"></p>
         </div>
       </form>
       <div class="dl-ready" id="download-ready">
-        <p data-i18n="dl.ready">Gracias. Su descarga está lista.</p>
-        <a class="pill pill-dark" id="download-link" href="#opc-enlace" data-i18n="dl.link">Descargar para Windows</a>
+        <p data-i18n="dl.ready"><b>Recibimos su solicitud.</b> Le enviaremos el enlace de descarga a su correo corporativo.</p>
       </div>
     </div>
   </div>
@@ -960,9 +960,9 @@ section { padding: 96px 0; }
     "en.h2": "Replicate the configuration", "en.t2": "It exports the configuration of a computer that already works and imports it into another one at the same site, comparing item by item before applying.",
     "en.h3": "Test the communication", "en.t3": "It connects as a client to OPC DA, AE, HDA and UA servers to browse, read, write and subscribe, and translates each error into its cause and its fix.",
     "en.h4": "Audit OPC clients", "en.t4": "It acts as a test server to check that third-party clients release their connections and how they react to outages or bad data quality, before connecting them to the control system. It delivers an audit report.",
-    "dl.title": "Download OPC Enlace", "dl.lead": "Fill in your details to enable the download.", "dl.role": "Job title", "dl.country": "Country", "dl.email": "Corporate email",
+    "dl.title": "Download OPC Enlace", "dl.lead": "Fill in your details and we will send the download link to your corporate email.", "dl.last": "Last name", "dl.role": "Job title", "dl.country": "Country", "dl.email": "Corporate email",
     "dl.note": "Only corporate email addresses are accepted. Gmail, Outlook, Yahoo and other free services are not allowed.",
-    "dl.send": "Enable download", "dl.ready": "Thank you. Your download is ready.", "dl.link": "Download for Windows",
+    "dl.send": "Request download", "dl.ready": "<b>We received your request.</b> We will send the download link to your corporate email.",
     "nav.security": "Cybersecurity",
     "bl.title": "Ideas to run <span class=\"grad\">the plant better.</span>", "bl.all": "See all articles", "bl.more": "Read article →",
     "bl.g1": "Virtual agent", "bl.h1": "One language for the whole plant: the virtual agent in action", "bl.t1": "Operations, instrumentation and maintenance do not always understand each other. The virtual agent uses AI to explain complex calculations in plain language, without hallucinations.",
@@ -1005,9 +1005,9 @@ section { padding: 96px 0; }
       dlMissing: "Complete todos los campos.",
       dlEmail: "Ingrese un correo válido.",
       dlFree: "Use su correo corporativo. No se aceptan correos de servicios gratuitos.",
-      dlSending: "Registrando sus datos…",
+      dlSending: "Enviando su solicitud…",
       dlFailed: "No pudimos registrar sus datos. Intente de nuevo o escríbanos a info@kapptek.com.",
-      dlNotReady: "Sus datos son válidos, pero la descarga aún no está habilitada en este sitio. Escríbanos a info@kapptek.com."
+      dlRejected: "No pudimos registrar ese correo. Use su correo corporativo o escríbanos a info@kapptek.com."
     },
     en: {
       missing: "Please fill in your name, your email and the message.",
@@ -1018,9 +1018,9 @@ section { padding: 96px 0; }
       dlMissing: "Please fill in all the fields.",
       dlEmail: "Enter a valid email address.",
       dlFree: "Use your corporate email. Free email services are not accepted.",
-      dlSending: "Registering your details…",
+      dlSending: "Sending your request…",
       dlFailed: "We could not register your details. Try again or write to us at info@kapptek.com.",
-      dlNotReady: "Your details are valid, but the download is not enabled on this site yet. Write to us at info@kapptek.com."
+      dlRejected: "We could not register that email. Use your corporate email or write to us at info@kapptek.com."
     }
   };
 
@@ -1102,12 +1102,11 @@ section { padding: 96px 0; }
     });
   });
 
-  // ---------- OPC Enlace download: registration with corporate email only ----------
-  // Set both values before going live:
-  //   LEAD_ENDPOINT: URL that receives the registration as a JSON POST (form service or own backend).
-  //   DOWNLOAD_URL:  URL of the Windows installer.
-  var LEAD_ENDPOINT = "";
-  var DOWNLOAD_URL = "";
+  // ---------- OPC Enlace download request: corporate email only, registered in HubSpot ----------
+  // The request is sent to a HubSpot form; the team replies with the download link by email.
+  var HUBSPOT_PORTAL_ID = "52380381";
+  var HUBSPOT_FORM_ID = "37c2c72f-6740-4b2e-9d52-1929bd4694ea";
+  var HUBSPOT_SUBMIT_URL = "https://api.hsforms.com/submissions/v3/integration/submit/" + HUBSPOT_PORTAL_ID + "/" + HUBSPOT_FORM_ID;
   var FREE_EMAIL_PROVIDERS = ["gmail", "googlemail", "hotmail", "outlook", "live", "msn", "yahoo", "ymail", "rocketmail", "icloud", "me", "mac", "aol", "proton", "protonmail", "pm", "gmx", "mail", "email", "yandex", "zoho", "hey", "tutanota", "tuta", "fastmail", "inbox", "qq", "163", "126", "terra", "uol", "bol", "vtr", "live"];
   var downloadForm = document.getElementById("download-form");
   var downloadStatus = document.getElementById("download-status");
@@ -1128,28 +1127,40 @@ section { padding: 96px 0; }
     event.preventDefault();
     var text = MESSAGES[currentLang];
     var data = {
-      name: downloadForm.elements.name.value.trim(),
-      role: downloadForm.elements.role.value.trim(),
+      firstname: downloadForm.elements.firstname.value.trim(),
+      lastname: downloadForm.elements.lastname.value.trim(),
+      jobtitle: downloadForm.elements.role.value.trim(),
       company: downloadForm.elements.company.value.trim(),
       country: downloadForm.elements.country.value.trim(),
-      email: downloadForm.elements.email.value.trim().toLowerCase(),
-      product: "Kapptek OPC Enlace",
-      language: currentLang
+      email: downloadForm.elements.email.value.trim().toLowerCase()
     };
     downloadReady.classList.remove("is-on");
-    if (!data.name || !data.role || !data.company || !data.country || !data.email) { showDownloadStatus(text.dlMissing, true); return; }
+    if (!data.firstname || !data.lastname || !data.jobtitle || !data.company || !data.country || !data.email) { showDownloadStatus(text.dlMissing, true); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) { showDownloadStatus(text.dlEmail, true); return; }
     if (!isCorporateEmail(data.email)) { showDownloadStatus(text.dlFree, true); return; }
-    if (!LEAD_ENDPOINT || !DOWNLOAD_URL) { showDownloadStatus(text.dlNotReady, true); return; }
+
+    var payload = {
+      fields: Object.keys(data).map(function (key) {
+        return { objectTypeId: "0-1", name: key, value: data[key] };
+      }),
+      context: { pageUri: window.location.href, pageName: document.title }
+    };
+    var submitButton = downloadForm.querySelector("button[type=submit]");
+    submitButton.disabled = true;
     showDownloadStatus(text.dlSending, false);
-    fetch(LEAD_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(data) })
+    fetch(HUBSPOT_SUBMIT_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
       .then(function (response) {
-        if (!response.ok) { throw new Error("Registration failed"); }
-        showDownloadStatus("", false);
-        document.getElementById("download-link").href = DOWNLOAD_URL;
-        downloadReady.classList.add("is-on");
+        if (response.ok) {
+          showDownloadStatus("", false);
+          downloadForm.reset();
+          downloadReady.classList.add("is-on");
+          return;
+        }
+        // HubSpot answers 400 when it rejects a value, for example a blocked or invalid email.
+        showDownloadStatus(response.status === 400 ? text.dlRejected : text.dlFailed, true);
       })
-      .catch(function () { showDownloadStatus(text.dlFailed, true); });
+      .catch(function () { showDownloadStatus(text.dlFailed, true); })
+      .then(function () { submitButton.disabled = false; });
   });
 
   // ---------- Contact form: builds an email, never claims it was sent ----------
